@@ -109,3 +109,6 @@ print mtx
 
 print "Pastable format"
 print str(mtx[0][0]) + ", " + str(mtx[1][1]) + ", " + str(mtx[0][2]) + ", " + str(mtx[1][2])
+
+print "Dist"
+print dist
