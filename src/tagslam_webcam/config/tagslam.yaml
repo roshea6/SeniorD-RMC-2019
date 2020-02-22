@@ -87,9 +87,9 @@ bodies:
        size: 0.172
        pose:
         position:
-          x: -0.34
-          y: 0
-          z: 0
+          x: 0
+          y: 0.4
+          z: -0.5
         rotation:
           x: 0
           y: 0
