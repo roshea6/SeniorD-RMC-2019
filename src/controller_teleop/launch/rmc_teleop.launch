@@ -17,7 +17,7 @@
 
 	<!-- If the argument is set to true then launch the odrive control node -->
 	<group if="$(arg physical)">
-		<node pkg="odrive_control" type="odrive_test.py" name="drivetrain_control"/>
+		<node pkg="odrive_control" type="odrive_test.py" name="drivetrain_control" output="screen"/>
 	</group>
 
 

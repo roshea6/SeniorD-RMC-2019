@@ -3,6 +3,7 @@
 import odrive
 from odrive.enums import *
 import time
+import rospy
 
 # Custom robot command message
 from controller_teleop.msg import robot_cmd
@@ -10,7 +11,7 @@ from controller_teleop.msg import robot_cmd
 
 # Controls the motor attached to the odrive based on incoming ROS messages
 def dtCallback(cmd_msg):
-	odrv0.axis0.controller.vel_setpoint = 200 * cmd_msg.dt_linear.x
+	odrv0.axis0.controller.vel_setpoint = 600 * cmd_msg.dt_linear.x
 
 if __name__ == "__main__":
 	print("Connecting to Odrive...")
@@ -43,7 +44,7 @@ if __name__ == "__main__":
 	rospy.init_node('drivetrain_control', anonymous=True)
 
 	# Subscribe to robot command topic
-	rospy.Subscriber("robot_cmd", dtCallback)
+	rospy.Subscriber("/rmc_bot/commands", robot_cmd, dtCallback)
 
 	rospy.spin()
 	
