@@ -2,6 +2,7 @@
 <launch>
 
 	<arg name="js" default="js0"/>
+	<arg name="physical" default="false"/>
 
 
 	<!-- joy node -->
@@ -14,6 +15,10 @@
 
 	<node pkg="controller_teleop" type="rmc_teleop.py" name="teleop_node"/>
 
+	<!-- If the argument is set to true then launch the odrive control node -->
+	<group if="$(arg physical)">
+		<node pkg="odrive_control" type="odrive_test.py" name="drivetrain_control"/>
+	</group>
 
 
 </launch>
