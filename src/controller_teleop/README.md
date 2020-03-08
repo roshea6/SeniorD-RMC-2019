@@ -1,4 +1,4 @@
-Package for controlling a simulated husky with a connected xbox one controller.
+Package for controlling a simulated  or our robot with a connected xbox one controller.
 Use the left joystick to move forwards and backwards and the right joystick
 to turn side to side.
 

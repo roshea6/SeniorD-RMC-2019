@@ -61,6 +61,21 @@ def cmd_callback(msg):
 
 		return
 
+	cmd_msg.dt_linear.x = 0
+	cmd_msg.dt_linear.y = 0
+	cmd_msg.dt_linear.z = 0
+	cmd_msg.dt_angular.x = 0
+	cmd_msg.dt_angular.y = 0
+	cmd_msg.dt_angular.z = 0
+
+	cmd_msg.convey_spd = 0
+	cmd_msg.lin_act_spd = 0
+	cmd_msg.rot_spd = 0
+
+	cmd_msg.scissor_spd = 0
+	cmd_msg.bucket_spd = 0
+
+	pub.publish(cmd_msg)
 
 if __name__ == '__main__':
 	# Initialize the node

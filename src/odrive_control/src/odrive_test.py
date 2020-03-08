@@ -11,13 +11,21 @@ from controller_teleop.msg import robot_cmd
 
 # Controls the motor attached to the odrive based on incoming ROS messages
 def dtCallback(cmd_msg):
-	odrv0.axis0.controller.vel_setpoint = 600 * cmd_msg.dt_linear.x
+	vel = 1500 * cmd_msg.dt_linear.x
+
+	print vel
+
+	odrv0.axis0.controller.vel_setpoint = vel
 
 if __name__ == "__main__":
 	print("Connecting to Odrive...")
 
 	# Find an available odrive device. This function will hold until a device is found
 	odrv0 = odrive.find_any(serial_number="2060387E304E")
+
+	print("Connected")
+
+	# odrv0.axis0.motor.config.pre_calibrated = True
 
 	# Calibrate the system
 	# TODO: Take out and set pre_calibrated tag to true
@@ -32,13 +40,6 @@ if __name__ == "__main__":
 
 	# Request the odrive to enter velocity control mode
 	odrv0.axis0.controller.config.control_mode = CTRL_MODE_VELOCITY_CONTROL
-
-	# print("changing vel")
-	# while(True):
-	# 	odrv0.axis0.controller.vel_setpoint = 300
-	# 	time.sleep(1)
-	# 	odrv0.axis0.controller.vel_setpoint = 400
-	# 	time.sleep(1)
 
 	# Initiliaze the ROS node
 	rospy.init_node('drivetrain_control', anonymous=True)
