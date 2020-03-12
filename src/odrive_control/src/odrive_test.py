@@ -11,12 +11,17 @@ from controller_teleop.msg import robot_cmd
 
 # Controls the motor attached to the odrive based on incoming ROS messages
 def dtCallback(cmd_msg):
-	vel = 600 * cmd_msg.dt_linear.x
+	vel = 700 * cmd_msg.dt_linear.x
 
 	print vel
 
-	odrv0.axis0.controller.vel_setpoint = vel
-	odrv0.axis1.controller.vel_setpoint = vel
+	if abs(cmd_msg.dt_angular.z) < .1:
+		odrv0.axis0.controller.vel_setpoint = vel
+		odrv0.axis1.controller.vel_setpoint = -vel
+
+	else:
+		odrv0.axis0.controller.vel_setpoint = 600 * cmd_msg.dt_angular.z
+		odrv0.axis1.controller.vel_setpoint = 600 * cmd_msg.dt_angular.z
 
 if __name__ == "__main__":
 	print("Connecting to Odrive 0")
@@ -26,21 +31,12 @@ if __name__ == "__main__":
 
 	print("Connected")
 
-	# odrv0.axis0.motor.config.pre_calibrated = True
-
 	# Calibrate the system
 	# TODO: Take out and set pre_calibrated tag to true
 	print("starting calibration of M0")
 	odrv0.axis0.requested_state = AXIS_STATE_FULL_CALIBRATION_SEQUENCE
 	while odrv0.axis0.current_state != AXIS_STATE_IDLE:
 		time.sleep(0.1)
-
-	# Set state to closed loop control
-	# In this state the odrive will try to maintain whatever state you send it
-	odrv0.axis0.requested_state = AXIS_STATE_CLOSED_LOOP_CONTROL
-
-	# Request the odrive to enter velocity control mode
-	odrv0.axis0.controller.config.control_mode = CTRL_MODE_VELOCITY_CONTROL
 
 	# Calibrate the system
 	# TODO: Take out and set pre_calibrated tag to true
@@ -49,6 +45,8 @@ if __name__ == "__main__":
 	while odrv0.axis1.current_state != AXIS_STATE_IDLE:
 		time.sleep(0.1)
 
+	print "Entering closed loop control mode"
+
 	# Set state to closed loop control
 	# In this state the odrive will try to maintain whatever state you send it
 	odrv0.axis1.requested_state = AXIS_STATE_CLOSED_LOOP_CONTROL
@@ -56,6 +54,14 @@ if __name__ == "__main__":
 	# Request the odrive to enter velocity control mode
 	odrv0.axis1.controller.config.control_mode = CTRL_MODE_VELOCITY_CONTROL
 
+	# Set state to closed loop control
+	# In this state the odrive will try to maintain whatever state you send it
+	odrv0.axis0.requested_state = AXIS_STATE_CLOSED_LOOP_CONTROL
+
+	# Request the odrive to enter velocity control mode
+	odrv0.axis0.controller.config.control_mode = CTRL_MODE_VELOCITY_CONTROL
+
+	
 
 	# Initiliaze the ROS node
 	rospy.init_node('drivetrain_control', anonymous=True)
