@@ -86,7 +86,7 @@
   </link>
   <joint
     name="axle1"
-    type="fixed">
+    type="continuous">
     <origin
       xyz="0.44561 0.1492 0.13512"
       rpy="1.5708 -1.2203 1.5708" />
@@ -95,7 +95,8 @@
     <child
       link="wheel1" />
     <axis
-      xyz="0 0 0" />
+      xyz="0 0 1" />
+    <limit effort="30" velocity="1.0"/>
   </joint>
   <link
     name="wheel2">
@@ -139,7 +140,7 @@
   </link>
   <joint
     name="axle2"
-    type="fixed">
+    type="continuous">
     <origin
       xyz="0.047286 0.1492 0.13512"
       rpy="-1.5708 1.3729 1.5708" />
@@ -148,7 +149,8 @@
     <child
       link="wheel2" />
     <axis
-      xyz="0 0 0" />
+      xyz="0 0 1" />
+    <limit effort="30" velocity="1.0"/>
   </joint>
   <link
     name="wheel3">
@@ -192,7 +194,7 @@
   </link>
   <joint
     name="axle3"
-    type="fixed">
+    type="continuous">
     <origin
       xyz="0.44561 0.69879 0.1319"
       rpy="-1.5708 1.5216 -1.5708" />
@@ -201,7 +203,8 @@
     <child
       link="wheel3" />
     <axis
-      xyz="0 0 0" />
+      xyz="0 0 1" />
+    <limit effort="30" velocity="1.0"/>
   </joint>
   <link
     name="wheel4">
@@ -245,7 +248,7 @@
   </link>
   <joint
     name="axle4"
-    type="fixed">
+    type="continuous">
     <origin
       xyz="0.047286 0.6988 0.13195"
       rpy="1.5708 -0.8569 -1.5708" />
@@ -254,9 +257,10 @@
     <child
       link="wheel4" />
     <axis
-      xyz="0 0 0" />
+      xyz="0 0 1" />
+    <limit effort="30" velocity="1.0"/>
   </joint>
-  <link
+  <!-- <link
     name="endeffector_rot">
     <inertial>
       <origin
@@ -467,5 +471,47 @@
       link="dispense" />
     <axis
       xyz="0 0 0" />
-  </joint>
+  </joint> -->
+  <transmission name="wheel1_trans">
+    <type>transmission_interface/SimpleTransmission</type>
+    <actuator name="$wheel1_motor">
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+    <joint name="axle1">
+      <hardwareInterface>PositionJointInterface</hardwareInterface>
+    </joint>
+  </transmission>
+  <transmission name="wheel2_trans">
+    <type>transmission_interface/SimpleTransmission</type>
+    <actuator name="$wheel2_motor">
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+    <joint name="axle2">
+      <hardwareInterface>PositionJointInterface</hardwareInterface>
+    </joint>
+  </transmission>
+  <transmission name="wheel3_trans">
+    <type>transmission_interface/SimpleTransmission</type>
+    <actuator name="$wheel3_motor">
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+    <joint name="axle3">
+      <hardwareInterface>PositionJointInterface</hardwareInterface>
+    </joint>
+  </transmission>
+  <transmission name="wheel4_trans">
+    <type>transmission_interface/SimpleTransmission</type>
+    <actuator name="$wheel4_motor">
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+    <joint name="axle4">
+      <hardwareInterface>PositionJointInterface</hardwareInterface>
+    </joint>
+  </transmission>
+  <gazebo>
+    <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
+      <robotNamespace>/</robotNamespace>
+    </plugin>
+  </gazebo>
+  
 </robot>
