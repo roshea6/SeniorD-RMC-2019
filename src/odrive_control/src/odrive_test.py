@@ -11,15 +11,17 @@ from controller_teleop.msg import robot_cmd
 
 # Controls the motor attached to the odrive based on incoming ROS messages
 def dtCallback(cmd_msg):
+	# Get the linear velocity for the robot from the command message
 	vel = 700 * cmd_msg.dt_linear.x
 
-	print vel
-
+	# If there is no command to turn then just drive straight
 	if abs(cmd_msg.dt_angular.z) < .1:
 		odrv0.axis0.controller.vel_setpoint = vel
 		odrv0.axis1.controller.vel_setpoint = -vel
 
+	# A command to turn is being sent
 	else:
+		# Spin the left and right side in opposite directions to turn the robot
 		odrv0.axis0.controller.vel_setpoint = 600 * cmd_msg.dt_angular.z
 		odrv0.axis1.controller.vel_setpoint = 600 * cmd_msg.dt_angular.z
 
@@ -60,8 +62,6 @@ if __name__ == "__main__":
 
 	# Request the odrive to enter velocity control mode
 	odrv0.axis0.controller.config.control_mode = CTRL_MODE_VELOCITY_CONTROL
-
-	
 
 	# Initiliaze the ROS node
 	rospy.init_node('drivetrain_control', anonymous=True)
