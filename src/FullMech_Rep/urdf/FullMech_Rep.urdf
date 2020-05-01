@@ -141,7 +141,7 @@
     name="axle2"
     type="continuous">
     <origin
-      xyz="0.47 0.0896 0"
+      xyz="0.16 0.115 -0.19"
       rpy="0 0 0" />
     <parent
       link="drivetrain" />
@@ -194,7 +194,7 @@
     name="axle3"
     type="continuous">
     <origin
-      xyz="0.47 0.0896 0"
+      xyz="0.78 0.115 0.19"
       rpy="0 0 0" />
     <parent
       link="drivetrain" />
@@ -247,7 +247,7 @@
     name="axle4"
     type="continuous">
     <origin
-      xyz="0.47 0.0896 0"
+      xyz="0.78 0.115 -0.19"
       rpy="0 0 0" />
     <parent
       link="drivetrain" />
