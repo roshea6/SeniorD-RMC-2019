@@ -1,5 +1,5 @@
 <launch>
-  
+	<arg name="js" default="js0"/>
 	<arg name="model" default="$(find FullMech_Rep)/urdf/FullMech_Rep.urdf"/>
 	<param name="robot_description" command="$(find xacro)/xacro.py $(arg model)" />
 
@@ -19,7 +19,7 @@
 		name="spawn_model"
 		pkg="gazebo_ros"
 		type="spawn_model"
-		args="-urdf -model FullMech_Rep -x 0 -y 0 -z 0.5 -R 0 -P -1.57 -Y 0 -param robot_description"
+		args="-urdf -model FullMech_Rep -x 0 -y 0 -z 0.5 -R 1.57 -P 0 -Y 0 -param robot_description"
 		output="screen" />
 	
 	
@@ -69,8 +69,18 @@
 			diffdrive_controller
 			--shutdown-timeout 3"/>
 
-	<node name="rqt_robot_steering" pkg="rqt_robot_steering" type="rqt_robot_steering">
+	<!-- <node name="rqt_robot_steering" pkg="rqt_robot_steering" type="rqt_robot_steering">
 		<param name="default_topic" value="/diffdrive_controller/cmd_vel"/>
+	</node> -->
+
+	<!-- joy node -->
+	<node respawn="true" pkg="joy" type="joy_node" name="joy" >
+		<param name="dev" type="string" value="/dev/input/$(arg js)" />
+		<param name="deadzone" value="0.12" />
+		<param name="autorepeat_rate" value="10"/>
 	</node>
+
+	<node pkg="FullMech_Rep" type="teleop_control.py" name="teleop_node"/>
+
 
 </launch>
