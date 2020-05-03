@@ -65,8 +65,9 @@
         xyz="0 0 0"
         rpy="0 0 0" />
       <geometry>
-        <mesh
-          filename="package://FullMech_Rep/meshes/wheel1.STL" />
+        <cylinder radius=".12" length="0.05"/>
+        <!-- <mesh
+          filename="package://FullMech_Rep/meshes/wheel1.STL" /> -->
       </geometry>
       <material
         name="">
@@ -79,8 +80,9 @@
         xyz="0 0 0"
         rpy="0 0 0" />
       <geometry>
-        <mesh
-          filename="package://FullMech_Rep/meshes/wheel1.STL" />
+        <cylinder radius=".12" length="0.05"/>
+        <!-- <mesh
+          filename="package://FullMech_Rep/meshes/wheel1.STL" /> -->
       </geometry>
     </collision>
   </link>
@@ -89,7 +91,7 @@
     type="continuous">
     <origin
       xyz="0.15 0.115 0.18271"
-      rpy="0 0 0.70807" />
+      rpy="0 3.14 0.70807" />
     <parent
       link="drivetrain" />
     <child
@@ -118,8 +120,9 @@
         xyz="0 0 0"
         rpy="0 0 0" />
       <geometry>
-        <mesh
-          filename="package://FullMech_Rep/meshes/wheel2.STL" />
+        <cylinder radius=".12" length="0.05"/>
+        <!-- <mesh
+          filename="package://FullMech_Rep/meshes/wheel2.STL" /> -->
       </geometry>
       <material
         name="">
@@ -132,8 +135,9 @@
         xyz="0 0 0"
         rpy="0 0 0" />
       <geometry>
-        <mesh
-          filename="package://FullMech_Rep/meshes/wheel2.STL" />
+        <cylinder radius=".12" length="0.05"/>
+        <!-- <mesh
+          filename="package://FullMech_Rep/meshes/wheel2.STL" /> -->
       </geometry>
     </collision>
   </link>
@@ -171,8 +175,9 @@
         xyz="0 0 0"
         rpy="0 0 0" />
       <geometry>
-        <mesh
-          filename="package://FullMech_Rep/meshes/wheel3.STL" />
+        <cylinder radius=".12" length="0.05"/>
+        <!-- <mesh
+          filename="package://FullMech_Rep/meshes/wheel3.STL" /> -->
       </geometry>
       <material
         name="">
@@ -185,8 +190,9 @@
         xyz="0 0 0"
         rpy="0 0 0" />
       <geometry>
-        <mesh
-          filename="package://FullMech_Rep/meshes/wheel3.STL" />
+        <cylinder radius=".12" length="0.05"/>
+        <!-- <mesh
+          filename="package://FullMech_Rep/meshes/wheel3.STL" /> -->
       </geometry>
     </collision>
   </link>
@@ -224,8 +230,9 @@
         xyz="0 0 0"
         rpy="0 0 0" />
       <geometry>
-        <mesh
-          filename="package://FullMech_Rep/meshes/wheel4.STL" />
+        <cylinder radius=".12" length="0.05"/>
+        <!-- <mesh
+          filename="package://FullMech_Rep/meshes/wheel4.STL" /> -->
       </geometry>
       <material
         name="">
@@ -238,8 +245,9 @@
         xyz="0 0 0"
         rpy="0 0 0" />
       <geometry>
-        <mesh
-          filename="package://FullMech_Rep/meshes/wheel4.STL" />
+        <cylinder radius=".12" length="0.05"/>
+        <!-- <mesh
+          filename="package://FullMech_Rep/meshes/wheel4.STL" /> -->
       </geometry>
     </collision>
   </link>
@@ -248,7 +256,7 @@
     type="continuous">
     <origin
       xyz="0.7 0.115 0.18271"
-      rpy="0 0 0.70807" />
+      rpy="0 3.14 0.70807" />
     <parent
       link="drivetrain" />
     <child
@@ -310,9 +318,14 @@
       xyz="0 1 0" />
     <limit
       lower="-0.1"
-      upper="0.4"
+      upper="0.0"
       effort="5"
       velocity="0.25" />
+    <!-- <limit
+      lower="-0.1"
+      upper="0.4"
+      effort="5"
+      velocity="0.25" /> -->
   </joint>
   <link
     name="dispense">
@@ -425,10 +438,15 @@
     <axis
       xyz="0 0 1" />
     <limit
+      lower="0.7"
+      upper="0.8"
+      effort="5"
+      velocity="0.25" />
+    <!-- <limit
       lower="0.384"
       upper="1.309"
       effort="5"
-      velocity="0.25" />
+      velocity="0.25" /> -->
   </joint>
   <link
     name="translation">
@@ -532,6 +550,80 @@
       <hardwareInterface>PositionJointInterface</hardwareInterface>
     </joint>
   </transmission>
+
+  <!-- Transmissions for the 4 wheels -->
+  <transmission name="wheel_1_trans">
+      <type>transmission_interface/SimpleTransmission</type>
+      <actuator name="$wheel_1_motor">
+        <mechanicalReduction>1</mechanicalReduction>
+      </actuator>
+      <joint name="axle1">
+        <hardwareInterface>VelocityJointInterface</hardwareInterface>
+      </joint>
+  </transmission>
+
+  <transmission name="wheel_2_trans">
+      <type>transmission_interface/SimpleTransmission</type>
+      <actuator name="$wheel_2_motor">
+        <mechanicalReduction>1</mechanicalReduction>
+      </actuator>
+      <joint name="axle2">
+        <hardwareInterface>VelocityJointInterface</hardwareInterface>
+      </joint>
+  </transmission>
+
+  <transmission name="wheel_3_trans">
+      <type>transmission_interface/SimpleTransmission</type>
+      <actuator name="$wheel_3_motor">
+        <mechanicalReduction>1</mechanicalReduction>
+      </actuator>
+      <joint name="axle3">
+        <hardwareInterface>VelocityJointInterface</hardwareInterface>
+      </joint>
+  </transmission>
+
+  <transmission name="wheel_4_trans">
+      <type>transmission_interface/SimpleTransmission</type>
+      <actuator name="$wheel_4_motor">
+        <mechanicalReduction>1</mechanicalReduction>
+      </actuator>
+      <joint name="axle4">
+        <hardwareInterface>VelocityJointInterface</hardwareInterface>
+      </joint>
+  </transmission>
+
+  <!-- Interaction properties of the wheels. Friction and such -->
+  <gazebo reference="wheel1">
+      <mu1 value="200.0"/>
+      <mu2 value="100.0"/>
+      <kp value="10000000.0" />
+      <kd value="1.0" />
+      <!-- <material>Gazebo/Grey</material> -->
+  </gazebo>
+
+  <gazebo reference="wheel2">
+      <mu1 value="200.0"/>
+      <mu2 value="100.0"/>
+      <kp value="10000000.0" />
+      <kd value="1.0" />
+      <!-- <material>Gazebo/Grey</material> -->
+  </gazebo>
+
+  <gazebo reference="wheel3">
+      <mu1 value="200.0"/>
+      <mu2 value="100.0"/>
+      <kp value="10000000.0" />
+      <kd value="1.0" />
+      <!-- <material>Gazebo/Grey</material> -->
+  </gazebo>
+
+  <gazebo reference="wheel4">
+      <mu1 value="200.0"/>
+      <mu2 value="100.0"/>
+      <kp value="10000000.0" />
+      <kd value="1.0" />
+      <!-- <material>Gazebo/Grey</material> -->
+  </gazebo>
 
 
   <!-- Gazebo plugin for ROS control -->

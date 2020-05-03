@@ -54,6 +54,11 @@
             file="$(find FullMech_Rep)/config/dispense.yaml"
             ns="dispense_dump_controller" />
 
+	<!-- Controller for differential drive system -->
+	<rosparam command="load"
+            file="$(find FullMech_Rep)/config/diffdrive.yaml"
+            ns="diffdrive_controller" />
+
 	<!-- Launch the joint state controller node -->
 	<node name="rmc_controller_spawner" pkg="controller_manager" type="spawner"
 		args="rmc_joint_state_controller
@@ -61,6 +66,11 @@
 			end_effector_rack_controller
 			dispense_scissor_controller
 			dispense_dump_controller
+			diffdrive_controller
 			--shutdown-timeout 3"/>
+
+	<node name="rqt_robot_steering" pkg="rqt_robot_steering" type="rqt_robot_steering">
+		<param name="default_topic" value="/diffdrive_controller/cmd_vel"/>
+	</node>
 
 </launch>
