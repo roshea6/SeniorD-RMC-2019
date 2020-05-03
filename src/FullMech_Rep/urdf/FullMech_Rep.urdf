@@ -488,4 +488,56 @@
       effort="5"
       velocity="0.25" />
   </joint>
+
+  <!-- Transmission for the end effector rotation -->
+  <transmission name="end_effector_rotate">
+    <type>transmission_interface/SimpleTransmission</type>
+    <actuator name="$end_effector_rotate_motor">
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+    <joint name="rotate">
+      <hardwareInterface>PositionJointInterface</hardwareInterface>
+    </joint>
+  </transmission>
+
+  <!-- Transmission for the end effector rack -->
+  <transmission name="end_effector_rack">
+    <type>transmission_interface/SimpleTransmission</type>
+    <actuator name="$end_effector_rack_motor">
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+    <joint name="rack">
+      <hardwareInterface>PositionJointInterface</hardwareInterface>
+    </joint>
+  </transmission>
+
+  <!-- Transmission for the dispensing scissor lift-->
+  <transmission name="dispense_scissor">
+    <type>transmission_interface/SimpleTransmission</type>
+    <actuator name="$dispence_scissor_motor">
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+    <joint name="scissor">
+      <hardwareInterface>PositionJointInterface</hardwareInterface>
+    </joint>
+  </transmission>
+
+  <!-- Transmission for the dispensing dump -->
+  <transmission name="dispense_dump">
+    <type>transmission_interface/SimpleTransmission</type>
+    <actuator name="$dispense_dump_motor">
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+    <joint name="dispense">
+      <hardwareInterface>PositionJointInterface</hardwareInterface>
+    </joint>
+  </transmission>
+
+
+  <!-- Gazebo plugin for ROS control -->
+  <gazebo>
+    <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
+      <robotNamespace>/</robotNamespace>
+    </plugin>
+  </gazebo>
 </robot>

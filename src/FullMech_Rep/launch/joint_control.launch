@@ -1,0 +1,66 @@
+<launch>
+  
+	<arg name="model" default="$(find FullMech_Rep)/urdf/FullMech_Rep.urdf"/>
+	<param name="robot_description" command="$(find xacro)/xacro.py $(arg model)" />
+
+	<!-- Launch an empty gazebo world -->
+	<include
+		file="$(find gazebo_ros)/launch/empty_world.launch" />
+	
+	<!-- Transform publisher between base_link of robot and base_footprint -->
+	<node
+		name="tf_footprint_base"
+		pkg="tf"
+		type="static_transform_publisher"
+		args="0 0 0 0 0 0 base_link base_footprint 40" />
+	
+	<!-- spawn the robot model using the urdf -->
+	<node
+		name="spawn_model"
+		pkg="gazebo_ros"
+		type="spawn_model"
+		args="-urdf -model FullMech_Rep -x 0 -y 0 -z 0.5 -R 0 -P -1.57 -Y 0 -param robot_description"
+		output="screen" />
+	
+	
+	<node
+		name="fake_joint_calibration"
+		pkg="rostopic"
+		type="rostopic"
+		args="pub /calibrated std_msgs/Bool true" />
+
+	<!-- Load the joint state controller parameters -->
+	<rosparam command="load"
+            file="$(find FullMech_Rep)/config/joints.yaml"
+            ns="rmc_joint_state_controller" />
+
+	<!-- Controller for end effector rotation -->
+	<rosparam command="load"
+            file="$(find FullMech_Rep)/config/rotate.yaml"
+            ns="end_effector_rotate_controller" />
+
+	<!-- Controller for end effector rack -->
+	<rosparam command="load"
+            file="$(find FullMech_Rep)/config/rack.yaml"
+            ns="end_effector_rack_controller" />
+
+	<!-- Controller for end effector rack -->
+	<rosparam command="load"
+            file="$(find FullMech_Rep)/config/scissor.yaml"
+            ns="dispense_scissor_controller" />
+
+	<!-- Controller for end effector rack -->
+	<rosparam command="load"
+            file="$(find FullMech_Rep)/config/dispense.yaml"
+            ns="dispense_dump_controller" />
+
+	<!-- Launch the joint state controller node -->
+	<node name="rmc_controller_spawner" pkg="controller_manager" type="spawner"
+		args="rmc_joint_state_controller
+			end_effector_rotate_controller
+			end_effector_rack_controller
+			dispense_scissor_controller
+			dispense_dump_controller
+			--shutdown-timeout 3"/>
+
+</launch>
