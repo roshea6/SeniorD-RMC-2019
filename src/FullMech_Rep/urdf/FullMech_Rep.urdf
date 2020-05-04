@@ -316,16 +316,16 @@
       link="storage" />
     <axis
       xyz="0 1 0" />
-    <limit
+    <!-- <limit
       lower="-0.15"
       upper="0.0"
       effort="5"
-      velocity="0.25" />
-    <!-- <limit
+      velocity="0.25" /> -->
+    <limit
       lower="-0.15"
       upper="0.3"
       effort="5"
-      velocity="0.25" /> -->
+      velocity="0.25" />
   </joint>
   <link
     name="dispense">
@@ -383,7 +383,7 @@
       lower="0"
       upper="1.05"
       effort="5"
-      velocity="0.25" />
+      velocity="0.8" />
   </joint>
   <link
     name="rotate_conv">
@@ -438,16 +438,16 @@
       link="rotate_conv" />
     <axis
       xyz="0 0 1" />
-    <limit
+    <!-- <limit
       lower="0.7"
       upper="0.8"
       effort="5"
-      velocity="0.25" />
-    <!-- <limit
+      velocity="0.5" /> -->
+    <limit
       lower="0.384"
-      upper="1.309"
+      upper="1.25"
       effort="5"
-      velocity="0.25" /> -->
+      velocity="0.5" />
   </joint>
   <link
     name="translation">

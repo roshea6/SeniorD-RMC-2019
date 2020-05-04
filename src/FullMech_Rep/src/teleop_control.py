@@ -11,27 +11,120 @@ Authors: Ryan
 import rospy
 from geometry_msgs.msg import Twist
 from sensor_msgs.msg import Joy
+from sensor_msgs.msg import JointState
+from std_msgs.msg import Float64
 
-# Callback function to convert joy data to velocity commands
-def vel_callback(msg):
-	pub = rospy.Publisher('/diffdrive_controller/cmd_vel', Twist, queue_size=1)
-	vel_msg = Twist()
+class teleopController(object):
+	def __init__(self):
+		# Publishers
+		self.vel_pub = rospy.Publisher('/diffdrive_controller/cmd_vel', Twist, queue_size=1)
+		self.end_effector_rotate_pub = rospy.Publisher('/end_effector_rotate_controller/command', Float64, queue_size=1)
+		self.end_effector_rack_pub = rospy.Publisher('/end_effector_rack_controller/command', Float64, queue_size=1)
+		self.dispense_dump_pub = rospy.Publisher('/dispense_dump_controller/command', Float64, queue_size=1)
+		self.dispense_scissor_pub = rospy.Publisher('/dispense_scissor_controller/command', Float64, queue_size=1)
 
-	vel_msg.linear.x = msg.axes[1]*2
-	vel_msg.linear.y = 0
-	vel_msg.linear.z = 0
-	vel_msg.angular.x = 0
-	vel_msg.angular.y = 0
-	vel_msg.angular.z = msg.axes[3]*2
+		# Indexes of the joints in the joint state message
+		self.rotate_idx = 0
+		self.rack_idx = 0
+		self.scissor_idx = 0
+		self.dump_idx = 0
 
-	pub.publish(vel_msg)
+		# Variables to hold the current positions of the joints
+		self.rotate_pos = 0
+		self.rack_pos = 0
+		self.scissor_pos = 0
+		self.dump_pos = 0
+
+
+	# Callback function to convert joy data to velocity commands
+	def velCallback(self, msg):
+		# Check if the deadman drive switch, currently LB, is held down
+		if(msg.buttons[4] == 1):
+
+			vel_msg = Twist()
+
+			vel_msg.linear.x = msg.axes[1]*1
+			vel_msg.linear.y = 0
+			vel_msg.linear.z = 0
+			vel_msg.angular.x = 0
+			vel_msg.angular.y = 0
+			vel_msg.angular.z = msg.axes[3]*1.5
+
+			self.vel_pub.publish(vel_msg)
+
+			return
+
+		# Check if the deadman dig switch, currently RB, is held down
+		elif(msg.buttons[5] == 1):
+			# Empty position messages
+			rotate_msg = Float64()
+			rack_msg = Float64()
+
+			# Increment the position of the end effector rotate joint based on the 
+			# Left joystick
+			rotate_msg.data = self.rotate_pos - .1*msg.axes[1]
+
+			# Increment the position of the end effector rack joint based on the 
+			# Left joystick
+			rack_msg.data = self.rack_pos - .1*msg.axes[4]
+
+			# Publish the commands to the joint controllers for the end effector
+			self.end_effector_rotate_pub.publish(rotate_msg)
+			self.end_effector_rack_pub.publish(rack_msg)
+
+			return
+
+		# Check if deadman dispense switch, currently LT, is mostly held down
+		elif((-.5*(msg.axes[2] - 1)) > .9):
+			# Empty position messages
+			scissor_msg = Float64()
+			dump_msg = Float64()
+
+			# Increment the position of the end effector rotate joint based on the 
+			# Left joystick
+			scissor_msg.data = self.scissor_pos + .1*msg.axes[1]
+
+			# Increment the position of the end effector rack joint based on the 
+			# Left joystick
+			dump_msg.data = self.dump_pos - .15*msg.axes[4]
+
+			# Publish the commands to the joint controlelrs for the dispensing systems
+			self.dispense_scissor_pub.publish(scissor_msg)
+			self.dispense_dump_pub.publish(dump_msg)
+
+			return
+
+
+	# Gets the current joint state of the joints on the robot
+	def jointStatesCallback(self, msg):
+		# Get the indexes of the joints in the message
+		self.rotate_idx = msg.name.index("rotate")
+		self.rack_idx = msg.name.index("rack")
+		self.scissor_idx = msg.name.index("scissor")
+		self.dump_idx = msg.name.index("dispense")
+
+		# Update the position of each of the joints
+		self.rotate_pos = msg.position[self.rotate_idx]
+		self.rack_pos = msg.position[self.rack_idx]
+		self.scissor_pos = msg.position[self.scissor_idx]
+		self.dump_pos = msg.position[self.dump_idx]
+
+		print("Rotate: " + str(self.rotate_pos))
+		print("Rack: " + str(self.rack_pos))
+		print("Scissor: " + str(self.scissor_pos))
+		print("Dump: " + str(self.dump_pos))
+
 
 
 if __name__ == '__main__':
 	# Initialize the node
 	rospy.init_node('teleop_node', anonymous=True)
 
+	controller = teleopController()
+
 	# Subscribe to joy topic to get input from controller
-	rospy.Subscriber("joy", Joy, vel_callback)
+	rospy.Subscriber("joy", Joy, controller.velCallback)
+
+	rospy.Subscriber("joint_states", JointState, controller.jointStatesCallback)
 
 	rospy.spin()

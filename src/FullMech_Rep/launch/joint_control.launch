@@ -80,7 +80,7 @@
 		<param name="autorepeat_rate" value="10"/>
 	</node>
 
-	<node pkg="FullMech_Rep" type="teleop_control.py" name="teleop_node"/>
+	<node pkg="FullMech_Rep" type="teleop_control.py" name="teleop_node" output="screen"/>
 
 
 </launch>
