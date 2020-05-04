@@ -43,6 +43,7 @@ class teleopController(object):
 		# Check if the A button has been hit to initialize the robot
 		if(msg.buttons[0] == 1):
 			self.initialized = True
+			print("Robot has been initialized")
 		
 		# Check if the robot has been initialized yet. 
 		# If it hasn't then send the starting state to the robot
@@ -71,15 +72,16 @@ class teleopController(object):
 
 		# Check if the deadman drive switch, currently LB, is held down
 		if(msg.buttons[4] == 1):
-
+			# Twist message for linear and angular velocity
 			vel_msg = Twist()
 
-			vel_msg.linear.x = msg.axes[1]*1
+			# Populate the message
+			vel_msg.linear.x = msg.axes[1]*1 # Left joystick forward and backwards
 			vel_msg.linear.y = 0
 			vel_msg.linear.z = 0
 			vel_msg.angular.x = 0
 			vel_msg.angular.y = 0
-			vel_msg.angular.z = msg.axes[3]*1.5
+			vel_msg.angular.z = msg.axes[3]*1.5 # Right joysick left and right
 
 			self.vel_pub.publish(vel_msg)
 
