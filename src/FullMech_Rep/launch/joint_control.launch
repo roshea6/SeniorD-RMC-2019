@@ -1,14 +1,16 @@
 <launch>
-	<arg name="js" default="js0"/>
+	<arg name="js" default="js1"/>
 	<arg name="model" default="$(find FullMech_Rep)/urdf/FullMech_Rep.urdf"/>
+	<arg name="world_name" default="$(find husky_gazebo)/worlds/clearpath_playpen.world"/>
 	<!-- <param name="robot_description" command="$(find xacro)/xacro.py $(arg model)" /> -->
 	<param
     name="robot_description"
     textfile="$(find FullMech_Rep)/urdf/FullMech_Rep.urdf" />
 
 	<!-- Launch an empty gazebo world -->
-	<include
-		file="$(find gazebo_ros)/launch/empty_world.launch" />
+	<include file="$(find gazebo_ros)/launch/empty_world.launch">
+		<!-- <arg name="world_name" value="$(arg world_name)"/> -->
+	</include>
 	
 	<!-- Transform publisher between base_link of robot and base_footprint -->
 	<node
@@ -22,7 +24,7 @@
 		name="spawn_model"
 		pkg="gazebo_ros"
 		type="spawn_model"
-		args="-urdf -model FullMech_Rep -x 0 -y 0 -z 0.5 -R 1.57 -P 0 -Y 0 -param robot_description"
+		args="-urdf -model FullMech_Rep -x 0 -y 0 -z 0.5 -R 0 -P 0 -Y 0 -param robot_description"
 		output="screen" />
 	
 	
@@ -59,12 +61,12 @@
             file="$(find FullMech_Rep)/config/rack.yaml"
             ns="end_effector_rack_controller" />
 
-	<!-- Controller for end effector rack -->
+	<!-- Controller for dispensing scissor lift -->
 	<rosparam command="load"
             file="$(find FullMech_Rep)/config/scissor.yaml"
             ns="dispense_scissor_controller" />
 
-	<!-- Controller for end effector rack -->
+	<!-- Controller for dispensing dump -->
 	<rosparam command="load"
             file="$(find FullMech_Rep)/config/dispense.yaml"
             ns="dispense_dump_controller" />
@@ -74,6 +76,11 @@
             file="$(find FullMech_Rep)/config/diffdrive.yaml"
             ns="diffdrive_controller" />
 
+	<!-- Controller for camera joint -->
+	<rosparam command="load"
+            file="$(find FullMech_Rep)/config/camera.yaml"
+            ns="camera_controller" />
+
 	<!-- Launch the joint state controller node -->
 	<node name="rmc_controller_spawner" pkg="controller_manager" type="spawner"
 		args="rmc_joint_state_controller
@@ -82,6 +89,7 @@
 			dispense_scissor_controller
 			dispense_dump_controller
 			diffdrive_controller
+			camera_controller
 			--shutdown-timeout 3"/>
 
 	<!-- <node name="rqt_robot_steering" pkg="rqt_robot_steering" type="rqt_robot_steering">

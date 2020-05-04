@@ -1,2 +1,2 @@
 type: "position_controllers/JointPositionController"
-joint: dispense_rotate
+joint: camera_joint

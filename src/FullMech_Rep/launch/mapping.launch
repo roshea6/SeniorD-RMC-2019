@@ -1,0 +1,19 @@
+<launch>
+
+	<include file="$(find FullMech_Rep)/launch/joint_control.launch">
+		<arg name="js" value="js1"/>
+	</include>
+
+	<arg name="scan_topic" default="laser_scan" />
+
+	<node pkg="gmapping" type="slam_gmapping" name="slam_gmapping">
+		<param name="odom_frame" value="odom"/>
+		<param name="base_frame" value="drivetrain"/>
+		<param name="map_frame" value="map"/>
+		<remap from="scan" to="$(arg scan_topic)"/>
+	</node>
+
+	<node name="rviz" pkg="rviz" type="rviz"
+    args="-d $(find FullMech_Rep)/rviz/mapping.rviz" />
+
+</launch>
