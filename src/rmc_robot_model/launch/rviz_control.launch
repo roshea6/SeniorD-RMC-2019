@@ -1,0 +1,67 @@
+<launch>
+
+	<arg name="model" default="$(find rmc_robot_model)/urdf/rmc_robot_model.urdf"/>
+	<arg name="gui" default="true" />
+	<arg name="rvizconfig" default="$(find rmc_robot_model)/rviz/robot_model.rviz" />
+
+	<!-- Generate the robot description paramter based on the specified urdf file -->
+	<param name="robot_description" command="$(find xacro)/xacro.py $(arg model)" />
+	<param name="use_gui" value="$(arg gui)"/>
+
+	<!-- Publishers for the robot joints and states. These control the robot -->
+	<node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher" />
+	<node name="robot_state_publisher" pkg="robot_state_publisher" type="state_publisher" />
+
+	<!-- Rviz with the specified configuration file to view the robot -->
+	<node name="rviz" pkg="rviz" type="rviz" args="-d $(arg rvizconfig)" required="true" />
+
+	<!-- Launch an empty gazebo world -->
+	<include file="$(find gazebo_ros)/launch/empty_world.launch" />
+	
+	<!-- Transform publisher -->
+	<node name="tf_footprint_base" pkg="tf" type="static_transform_publisher" 
+	args="0 0 0 0 0 0 base_link base_footprint 40" />
+	
+	<!-- Spawn the model in gazebo -->
+	<node name="spawn_model" pkg="gazebo_ros" type="spawn_model" 
+	args="-file $(find rmc_robot_model)/urdf/rmc_robot_model.urdf 
+	-urdf -model rmc_robot_model" output="screen" />
+	
+	<node name="fake_joint_calibration" pkg="rostopic" type="rostopic" 
+	args="pub /calibrated std_msgs/Bool true" />
+
+	<!-- Load parameters for our joint state controller -->
+	<rosparam command="load"
+            file="$(find rmc_robot_model)/config/joints.yaml"
+            ns="joint_state_controller" />
+
+	<!-- Load parameters for wheel 1 controller -->
+  	<rosparam command="load"
+            file="$(find rmc_robot_model)/config/wheel1.yaml"
+            ns="wheel1_controller" />
+
+	<!-- Load parameters for wheel 2 controller -->
+	<rosparam command="load"
+            file="$(find rmc_robot_model)/config/wheel2.yaml"
+            ns="wheel2_controller" />
+	
+	<!-- Load parameters for wheel 3 controller -->
+	<rosparam command="load"
+            file="$(find rmc_robot_model)/config/wheel3.yaml"
+            ns="wheel3_controller" />
+
+	<!-- Load parameters for wheel 4 controller -->
+	<rosparam command="load"
+            file="$(find rmc_robot_model)/config/wheel4.yaml"
+            ns="wheel4_controller" />
+
+	<!-- Launch the joint state controller to control the wheels -->
+	<node name="controller_spawner" pkg="controller_manager" type="spawner"
+		args="joint_state_controller
+			wheel1_controller
+			wheel2_controller
+			wheel3_controller
+			wheel4_controller
+			--shutdown-timeout 3"/>
+
+</launch>

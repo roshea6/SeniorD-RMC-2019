@@ -1,0 +1,544 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- This URDF was automatically created by SolidWorks to URDF Exporter! Originally created by Stephen Brawner (brawner@gmail.com) 
+     Commit Version: 1.5.1-0-g916b5db  Build Version: 1.5.7152.31018
+     For more information, please see http://wiki.ros.org/sw_urdf_exporter -->
+<robot
+  name="rmc_robot_model">
+  <link
+    name="drivetrainbase">
+    <inertial>
+      <origin
+        xyz="0.24658 0.15597 -0.37734"
+        rpy="0 0 0" />
+      <mass
+        value="3.9785" />
+      <inertia
+        ixx="0.14871"
+        ixy="1.3155E-08"
+        ixz="-1.5134E-06"
+        iyy="0.15604"
+        iyz="0.00014295"
+        izz="0.0090742" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://rmc_robot_model/meshes/drivetrainbase.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.89804 0.91765 0.92941 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://rmc_robot_model/meshes/drivetrainbase.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <link
+    name="wheel1">
+    <inertial>
+      <origin
+        xyz="-1.6679E-10 2.0797E-10 0.0035147"
+        rpy="0 0 0" />
+      <mass
+        value="1.2253" />
+      <inertia
+        ixx="0.0059813"
+        ixy="-1.7903E-09"
+        ixz="-1.7414E-11"
+        iyy="0.0059813"
+        iyz="9.1392E-12"
+        izz="0.01096" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://rmc_robot_model/meshes/wheel1.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://rmc_robot_model/meshes/wheel1.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="axle1"
+    type="continuous">
+    <origin
+      xyz="0.44561 0.1492 0.13512"
+      rpy="1.5708 -1.2206 1.5708" />
+    <parent
+      link="drivetrainbase" />
+    <child
+      link="wheel1" />
+    <axis
+      xyz="0 0 1" />
+  </joint>
+  <link
+    name="wheel2">
+    <inertial>
+      <origin
+        xyz="-1.3227E-10 -2.0459E-10 0.0035147"
+        rpy="0 0 0" />
+      <mass
+        value="1.2253" />
+      <inertia
+        ixx="0.0059813"
+        ixy="8.048E-10"
+        ixz="-1.4607E-12"
+        iyy="0.0059813"
+        iyz="-1.5169E-11"
+        izz="0.01096" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://rmc_robot_model/meshes/wheel2.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://rmc_robot_model/meshes/wheel2.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="axle2"
+    type="continuous">
+    <origin
+      xyz="0.047286 0.1492 0.13512"
+      rpy="-1.5708 0.70849 1.5708" />
+    <parent
+      link="drivetrainbase" />
+    <child
+      link="wheel2" />
+    <axis
+      xyz="0 0 1" />
+  </joint>
+  <link
+    name="wheel3">
+    <inertial>
+      <origin
+        xyz="-2.6111E-10 -1.6115E-10 0.0035147"
+        rpy="0 0 0" />
+      <mass
+        value="1.2253" />
+      <inertia
+        ixx="0.0059813"
+        ixy="9.8543E-10"
+        ixz="-2.0085E-11"
+        iyy="0.0059813"
+        iyz="-1.8679E-11"
+        izz="0.01096" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://rmc_robot_model/meshes/wheel3.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://rmc_robot_model/meshes/wheel3.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="axle3"
+    type="continuous">
+    <origin
+      xyz="0.44561 0.69879 0.1319"
+      rpy="-1.5708 1.5216 -1.5708" />
+    <parent
+      link="drivetrainbase" />
+    <child
+      link="wheel3" />
+    <axis
+      xyz="0 0 1" />
+  </joint>
+  <link
+    name="wheel4">
+    <inertial>
+      <origin
+        xyz="-1.6057E-11 2.6751E-10 0.0035147"
+        rpy="0 0 0" />
+      <mass
+        value="1.2253" />
+      <inertia
+        ixx="0.0059813"
+        ixy="4.108E-10"
+        ixz="-7.0715E-10"
+        iyy="0.0059813"
+        iyz="1.9706E-10"
+        izz="0.01096" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://rmc_robot_model/meshes/wheel4.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://rmc_robot_model/meshes/wheel4.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="axle4"
+    type="continuous">
+    <origin
+      xyz="0.047286 0.6988 0.13195"
+      rpy="1.5708 -0.8569 -1.5708" />
+    <parent
+      link="drivetrainbase" />
+    <child
+      link="wheel4" />
+    <axis
+      xyz="0 0 1" />
+  </joint>
+  <link
+    name="endeffector_rot">
+    <inertial>
+      <origin
+        xyz="-0.13997 0.74705 0.091164"
+        rpy="0 0 0" />
+      <mass
+        value="0.31419" />
+      <inertia
+        ixx="0.00065165"
+        ixy="1.0253E-08"
+        ixz="-4.3862E-09"
+        iyy="0.00035831"
+        iyz="0.00019271"
+        izz="0.00029545" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://rmc_robot_model/meshes/endeffector_rot.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.89804 0.91765 0.92941 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://rmc_robot_model/meshes/endeffector_rot.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="limit_angles"
+    type="revolute">
+    <origin
+      xyz="0.38615 0 0.1082"
+      rpy="0 0 0" />
+    <parent
+      link="drivetrainbase" />
+    <child
+      link="endeffector_rot" />
+    <axis
+      xyz="1 0 0" />
+    <limit
+      lower="0.384"
+      upper="1.309"
+      effort="0"
+      velocity="0" />
+  </joint>
+  <link
+    name="linear_trans">
+    <inertial>
+      <origin
+        xyz="-3.0743E-05 0.39314 0.057495"
+        rpy="0 0 0" />
+      <mass
+        value="0.41314" />
+      <inertia
+        ixx="0.0203"
+        ixy="3.0894E-08"
+        ixz="2.0947E-06"
+        iyy="0.0203"
+        iyz="-3.125E-07"
+        izz="3.6283E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://rmc_robot_model/meshes/linear_trans.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.89804 0.91765 0.92941 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://rmc_robot_model/meshes/linear_trans.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="rackpin"
+    type="prismatic">
+    <origin
+      xyz="-0.13993 0.36358 -0.065882"
+      rpy="0.70262 0 0" />
+    <parent
+      link="endeffector_rot" />
+    <child
+      link="linear_trans" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="0"
+      upper="0.462"
+      effort="0"
+      velocity="0" />
+  </joint>
+  <link
+    name="conveyor_top">
+    <inertial>
+      <origin
+        xyz="0.075 -0.27942 -0.36452"
+        rpy="0 0 0" />
+      <mass
+        value="0.76532" />
+      <inertia
+        ixx="0.00070716"
+        ixy="5.4534E-13"
+        ixz="4.0714E-13"
+        iyy="0.00040933"
+        iyz="5.4918E-08"
+        izz="0.00040923" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://rmc_robot_model/meshes/conveyor_top.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.69804 0.69804 0.69804 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://rmc_robot_model/meshes/conveyor_top.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="conveyor"
+    type="continuous">
+    <origin
+      xyz="0.075 0.39185 0.51933"
+      rpy="0.6511 0 3.1416" />
+    <parent
+      link="linear_trans" />
+    <child
+      link="conveyor_top" />
+    <axis
+      xyz="-1 0 0" />
+    <limit
+      lower="0"
+      upper="0"
+      effort="0"
+      velocity="0" />
+  </joint>
+  <link
+    name="conveyor_bottom">
+    <inertial>
+      <origin
+        xyz="0.0750005934860735 0.0553320317228606 -0.0554113323633948"
+        rpy="0 0 0" />
+      <mass
+        value="0.460858078898315" />
+      <inertia
+        ixx="0.000362605770055214"
+        ixy="5.68816519936613E-11"
+        ixz="-1.66841016185435E-10"
+        iyy="0.000209673847627924"
+        iyz="-3.06155235122168E-07"
+        izz="0.000210041278219141" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://rmc_robot_model/meshes/conveyor_bottom.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.698039215686274 0.698039215686274 0.698039215686274 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://rmc_robot_model/meshes/conveyor_bottom.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="shaft"
+    type="continuous">
+    <origin
+      xyz="0.075 0.45393 -0.37125"
+      rpy="1.4673 0 3.1416" />
+    <parent
+      link="linear_trans" />
+    <child
+      link="conveyor_bottom" />
+    <axis
+      xyz="1 0 0" />
+  </joint>
+  <link
+    name="dispense">
+    <inertial>
+      <origin
+        xyz="0.20141079893132 -0.00462680331729021 1.11022302462516E-16"
+        rpy="0 0 0" />
+      <mass
+        value="0.727785005713152" />
+      <inertia
+        ixx="0.0050387083243539"
+        ixy="0.000138452246882556"
+        ixz="-2.06722776096479E-18"
+        iyy="0.0142681380163798"
+        iyz="-3.31805220401952E-17"
+        izz="0.00928991510171991" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://rmc_robot_model/meshes/dispense.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://rmc_robot_model/meshes/dispense.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="scissor"
+    type="prismatic">
+    <origin
+      xyz="0.24486 0.00037342 0.31349"
+      rpy="1.5708 0 1.5708" />
+    <parent
+      link="drivetrainbase" />
+    <child
+      link="dispense" />
+    <axis
+      xyz="0 1 0" />
+    <limit
+      lower="0"
+      upper="0.3"
+      effort="0"
+      velocity="0" />
+  </joint>
+</robot>

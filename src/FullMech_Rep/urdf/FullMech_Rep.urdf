@@ -1,0 +1,637 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- This URDF was automatically created by SolidWorks to URDF Exporter! Originally created by Stephen Brawner (brawner@gmail.com) 
+     Commit Version: 1.5.1-0-g916b5db  Build Version: 1.5.7152.31018
+     For more information, please see http://wiki.ros.org/sw_urdf_exporter -->
+<robot
+  name="FullMech_Rep">
+  <link
+    name="drivetrain">
+    <inertial>
+      <origin
+        xyz="0.427967702655067 0.115370408915359 -5.27177338473504E-18"
+        rpy="0 0 0" />
+      <mass
+        value="3.77582130485992" />
+      <inertia
+        ixx="0.0534389873542028"
+        ixy="-0.000464379665206139"
+        ixz="8.51312381537968E-17"
+        iyy="0.373546703309241"
+        iyz="1.94801498392383E-18"
+        izz="0.321833554389598" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://FullMech_Rep/meshes/drivetrain.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://FullMech_Rep/meshes/drivetrain.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <link
+    name="wheel1">
+    <inertial>
+      <origin
+        xyz="-1.30975563727986E-10 -2.06154565640659E-10 0.00351465143708507"
+        rpy="0 0 0" />
+      <mass
+        value="1.22527899288124" />
+      <inertia
+        ixx="0.00598133477437682"
+        ixy="8.04804660631611E-10"
+        ixz="-1.37907950166563E-12"
+        iyy="0.00598133797963134"
+        iyz="-1.53294491952911E-11"
+        izz="0.0109596153406548" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <cylinder radius=".12" length="0.05"/>
+        <!-- <mesh
+          filename="package://FullMech_Rep/meshes/wheel1.STL" /> -->
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <cylinder radius=".12" length="0.05"/>
+        <!-- <mesh
+          filename="package://FullMech_Rep/meshes/wheel1.STL" /> -->
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="axle1"
+    type="continuous">
+    <origin
+      xyz="0.15 0.115 0.18271"
+      rpy="0 3.14 0.70807" />
+    <parent
+      link="drivetrain" />
+    <child
+      link="wheel1" />
+    <axis
+      xyz="0 0 1" />
+  </joint>
+  <link
+    name="wheel2">
+    <inertial>
+      <origin
+        xyz="-1.34570660170752E-10 1.89999863065005E-10 0.00351465143708507"
+        rpy="0 0 0" />
+      <mass
+        value="1.22527899288124" />
+      <inertia
+        ixx="0.00598133445312605"
+        ixy="4.08741006969679E-10"
+        ixz="-7.13003401932794E-10"
+        iyy="0.00598133605794787"
+        iyz="1.93637321593974E-10"
+        izz="0.0109596137019381" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <cylinder radius=".12" length="0.05"/>
+        <!-- <mesh
+          filename="package://FullMech_Rep/meshes/wheel2.STL" /> -->
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <cylinder radius=".12" length="0.05"/>
+        <!-- <mesh
+          filename="package://FullMech_Rep/meshes/wheel2.STL" /> -->
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="axle2"
+    type="continuous">
+    <origin
+      xyz="0.15 0.115 -0.18271"
+      rpy="3.1416 0 -2.3981" />
+    <parent
+      link="drivetrain" />
+    <child
+      link="wheel2" />
+    <axis
+      xyz="0 0 1" />
+  </joint>
+  <link
+    name="wheel3">
+    <inertial>
+      <origin
+        xyz="1.14839249221177E-11 -3.22153193010877E-10 0.0035146514370851"
+        rpy="0 0 0" />
+      <mass
+        value="1.22527899288124" />
+      <inertia
+        ixx="0.00598133477451403"
+        ixy="8.04836566749983E-10"
+        ixz="6.52449872839693E-12"
+        iyy="0.00598133797959156"
+        iyz="-2.8119660990451E-11"
+        izz="0.0109596153407522" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <cylinder radius=".12" length="0.05"/>
+        <!-- <mesh
+          filename="package://FullMech_Rep/meshes/wheel3.STL" /> -->
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <cylinder radius=".12" length="0.05"/>
+        <!-- <mesh
+          filename="package://FullMech_Rep/meshes/wheel3.STL" /> -->
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="axle3"
+    type="continuous">
+    <origin
+      xyz="0.7 0.115 -0.18271"
+      rpy="3.1416 0 -2.2351" />
+    <parent
+      link="drivetrain" />
+    <child
+      link="wheel3" />
+    <axis
+      xyz="0 0 1" />
+  </joint>
+  <link
+    name="wheel4">
+    <inertial>
+      <origin
+        xyz="-1.30975563727986E-10 -2.06154704418537E-10 0.00351465143708507"
+        rpy="0 0 0" />
+      <mass
+        value="1.22527899288124" />
+      <inertia
+        ixx="0.00598133477437683"
+        ixy="8.04804674509399E-10"
+        ixz="-1.3790795214254E-12"
+        iyy="0.00598133797963135"
+        iyz="-1.53294484730678E-11"
+        izz="0.0109596153406548" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <cylinder radius=".12" length="0.05"/>
+        <!-- <mesh
+          filename="package://FullMech_Rep/meshes/wheel4.STL" /> -->
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <cylinder radius=".12" length="0.05"/>
+        <!-- <mesh
+          filename="package://FullMech_Rep/meshes/wheel4.STL" /> -->
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="axle4"
+    type="continuous">
+    <origin
+      xyz="0.7 0.115 0.18271"
+      rpy="0 3.14 0.70807" />
+    <parent
+      link="drivetrain" />
+    <child
+      link="wheel4" />
+    <axis
+      xyz="0 0 1" />
+  </joint>
+  <link
+    name="storage">
+    <inertial>
+      <origin
+        xyz="0.175 0.276401777374457 2.2812918654342E-16"
+        rpy="0 0 0" />
+      <mass value=".01"/>
+      <!-- <mass value="0.248919999999999" /> -->
+      <inertia
+        ixx="0.00162641116102266"
+        ixy="7.96540095890137E-22"
+        ixz="1.98679070880409E-19"
+        iyy="0.00416733566666664"
+        iyz="-5.53862670426238E-23"
+        izz="0.00254119216102265" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://FullMech_Rep/meshes/storage.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://FullMech_Rep/meshes/storage.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="scissor"
+    type="prismatic">
+    <origin
+      xyz="0 0 0"
+      rpy="0 0 0" />
+    <parent
+      link="drivetrain" />
+    <child
+      link="storage" />
+    <axis
+      xyz="0 1 0" />
+    <!-- <limit
+      lower="-0.15"
+      upper="0.0"
+      effort="5"
+      velocity="0.25" /> -->
+    <limit
+      lower="-0.15"
+      upper="0.3"
+      effort="5"
+      velocity="0.25" />
+  </joint>
+  <link
+    name="dispense">
+    <inertial>
+      <origin
+        xyz="-0.0212783405919354 0.131718171029254 -4.30659496104356E-16"
+        rpy="0 0 0" />
+      <mass value=".01"/>
+      <!-- <mass value="0.490259886128" /> -->
+      <inertia
+        ixx="0.00778343636692995"
+        ixy="-0.00266036642706346"
+        ixz="-4.65078212371813E-18"
+        iyy="0.00957311492456416"
+        iyz="-9.76585077897691E-20"
+        izz="0.00657647247964353" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://FullMech_Rep/meshes/dispense.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://FullMech_Rep/meshes/dispense.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="dispense"
+    type="revolute">
+    <origin
+      xyz="0.175 0.27513 0"
+      rpy="0 0 0" />
+    <parent
+      link="storage" />
+    <child
+      link="dispense" />
+    <axis
+      xyz="0 0 -1" />
+    <limit
+      lower="0"
+      upper="1.05"
+      effort="5"
+      velocity="0.8" />
+  </joint>
+  <link
+    name="rotate_conv">
+    <inertial>
+      <origin
+        xyz="0.267944768013426 0.133655983183746 1.29731559949039E-15"
+        rpy="0 0 0" />
+      <mass value=".01"/>
+      <!-- <mass
+        value="4.12035499957539" /> -->
+      <inertia
+        ixx="0.0504951827564745"
+        ixy="0.0155266647555281"
+        ixz="-2.61944938938392E-16"
+        iyy="0.0598724883705849"
+        iyz="8.57197342621352E-16"
+        izz="0.0547695583840302" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://FullMech_Rep/meshes/rotate_conv.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://FullMech_Rep/meshes/rotate_conv.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="rotate"
+    type="revolute">
+    <origin
+      xyz="0.47 0.0896 0"
+      rpy="0 0 0" />
+    <parent
+      link="drivetrain" />
+    <child
+      link="rotate_conv" />
+    <axis
+      xyz="0 0 1" />
+    <!-- <limit
+      lower="0.7"
+      upper="0.8"
+      effort="5"
+      velocity="0.5" /> -->
+    <limit
+      lower="0.384"
+      upper="1.25"
+      effort="5"
+      velocity="0.5" />
+  </joint>
+  <link
+    name="translation">
+    <inertial>
+      <origin
+        xyz="0.737944768013426 0.223255983183746 1.29757316003065E-15"
+        rpy="0 0 0" />
+      <mass value=".01"/>
+      <!-- <mass
+        value="4.12035499957539" /> -->
+      <inertia
+        ixx="0.0504951827564745"
+        ixy="0.0155266647555281"
+        ixz="-2.61309664227952E-16"
+        iyy="0.0598724883705849"
+        iyz="8.58044375568606E-16"
+        izz="0.0547695583840302" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://FullMech_Rep/meshes/translation.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://FullMech_Rep/meshes/translation.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="rack"
+    type="prismatic">
+    <origin
+      xyz="-0.47 -0.0896 0"
+      rpy="0 0 0" />
+    <parent
+      link="rotate_conv" />
+    <child
+      link="translation" />
+    <axis
+      xyz="-0.2999 0.95397 0" />
+    <limit
+      lower="-0.5"
+      upper="0.0"
+      effort="5"
+      velocity="0.25" />
+  </joint>
+
+  <!-- Transmission for the end effector rotation -->
+  <transmission name="end_effector_rotate">
+    <type>transmission_interface/SimpleTransmission</type>
+    <actuator name="$end_effector_rotate_motor">
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+    <joint name="rotate">
+      <hardwareInterface>PositionJointInterface</hardwareInterface>
+    </joint>
+  </transmission>
+
+  <!-- Transmission for the end effector rack -->
+  <transmission name="end_effector_rack">
+    <type>transmission_interface/SimpleTransmission</type>
+    <actuator name="$end_effector_rack_motor">
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+    <joint name="rack">
+      <hardwareInterface>PositionJointInterface</hardwareInterface>
+    </joint>
+  </transmission>
+
+  <!-- Transmission for the dispensing scissor lift-->
+  <transmission name="dispense_scissor">
+    <type>transmission_interface/SimpleTransmission</type>
+    <actuator name="$dispence_scissor_motor">
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+    <joint name="scissor">
+      <hardwareInterface>PositionJointInterface</hardwareInterface>
+    </joint>
+  </transmission>
+
+  <!-- Transmission for the dispensing dump -->
+  <transmission name="dispense_dump">
+    <type>transmission_interface/SimpleTransmission</type>
+    <actuator name="$dispense_dump_motor">
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+    <joint name="dispense">
+      <hardwareInterface>PositionJointInterface</hardwareInterface>
+    </joint>
+  </transmission>
+
+  <!-- Transmissions for the 4 wheels -->
+  <transmission name="wheel_1_trans">
+      <type>transmission_interface/SimpleTransmission</type>
+      <actuator name="$wheel_1_motor">
+        <mechanicalReduction>1</mechanicalReduction>
+      </actuator>
+      <joint name="axle1">
+        <hardwareInterface>VelocityJointInterface</hardwareInterface>
+      </joint>
+  </transmission>
+
+  <transmission name="wheel_2_trans">
+      <type>transmission_interface/SimpleTransmission</type>
+      <actuator name="$wheel_2_motor">
+        <mechanicalReduction>1</mechanicalReduction>
+      </actuator>
+      <joint name="axle2">
+        <hardwareInterface>VelocityJointInterface</hardwareInterface>
+      </joint>
+  </transmission>
+
+  <transmission name="wheel_3_trans">
+      <type>transmission_interface/SimpleTransmission</type>
+      <actuator name="$wheel_3_motor">
+        <mechanicalReduction>1</mechanicalReduction>
+      </actuator>
+      <joint name="axle3">
+        <hardwareInterface>VelocityJointInterface</hardwareInterface>
+      </joint>
+  </transmission>
+
+  <transmission name="wheel_4_trans">
+      <type>transmission_interface/SimpleTransmission</type>
+      <actuator name="$wheel_4_motor">
+        <mechanicalReduction>1</mechanicalReduction>
+      </actuator>
+      <joint name="axle4">
+        <hardwareInterface>VelocityJointInterface</hardwareInterface>
+      </joint>
+  </transmission>
+
+  <!-- Interaction properties of the wheels. Friction and such -->
+  <gazebo reference="wheel1">
+      <mu1 value="200.0"/>
+      <mu2 value="100.0"/>
+      <kp value="10000000.0" />
+      <kd value="1.0" />
+      <!-- <material>Gazebo/Grey</material> -->
+  </gazebo>
+
+  <gazebo reference="wheel2">
+      <mu1 value="200.0"/>
+      <mu2 value="100.0"/>
+      <kp value="10000000.0" />
+      <kd value="1.0" />
+      <!-- <material>Gazebo/Grey</material> -->
+  </gazebo>
+
+  <gazebo reference="wheel3">
+      <mu1 value="200.0"/>
+      <mu2 value="100.0"/>
+      <kp value="10000000.0" />
+      <kd value="1.0" />
+      <!-- <material>Gazebo/Grey</material> -->
+  </gazebo>
+
+  <gazebo reference="wheel4">
+      <mu1 value="200.0"/>
+      <mu2 value="100.0"/>
+      <kp value="10000000.0" />
+      <kd value="1.0" />
+      <!-- <material>Gazebo/Grey</material> -->
+  </gazebo>
+
+
+  <!-- Gazebo plugin for ROS control -->
+  <gazebo>
+    <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
+      <robotNamespace>/</robotNamespace>
+    </plugin>
+  </gazebo>
+</robot>
