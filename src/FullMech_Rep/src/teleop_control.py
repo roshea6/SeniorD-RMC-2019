@@ -35,9 +35,40 @@ class teleopController(object):
 		self.scissor_pos = 0
 		self.dump_pos = 0
 
+		self.initialized = False
+
 
 	# Callback function to convert joy data to velocity commands
 	def velCallback(self, msg):
+		# Check if the A button has been hit to initialize the robot
+		if(msg.buttons[0] == 1):
+			self.initialized = True
+		
+		# Check if the robot has been initialized yet. 
+		# If it hasn't then send the starting state to the robot
+		if(not self.initialized):
+			print "Press A to initialize the robot"
+
+			# Empty position messages
+			rotate_msg = Float64()
+			rack_msg = Float64()
+			scissor_msg = Float64()
+			dump_msg = Float64()
+
+			# Fill messages with ideal starting positions. Determined through testing
+			rotate_msg.data = 1.25
+			rack_msg.data = 0.0
+			scissor_msg.data = -0.15
+			dump_msg.data = 0.5
+
+			# Publish the starting state to the robot so it isn't coliding with the ground at all
+			self.end_effector_rotate_pub.publish(rotate_msg)
+			self.end_effector_rack_pub.publish(rack_msg)
+			self.dispense_scissor_pub.publish(scissor_msg)
+			self.dispense_dump_pub.publish(dump_msg)
+
+			return
+
 		# Check if the deadman drive switch, currently LB, is held down
 		if(msg.buttons[4] == 1):
 
@@ -109,10 +140,10 @@ class teleopController(object):
 		self.scissor_pos = msg.position[self.scissor_idx]
 		self.dump_pos = msg.position[self.dump_idx]
 
-		print("Rotate: " + str(self.rotate_pos))
-		print("Rack: " + str(self.rack_pos))
-		print("Scissor: " + str(self.scissor_pos))
-		print("Dump: " + str(self.dump_pos))
+		# print("Rotate: " + str(self.rotate_pos))
+		# print("Rack: " + str(self.rack_pos))
+		# print("Scissor: " + str(self.scissor_pos))
+		# print("Dump: " + str(self.dump_pos))
 
 
 
