@@ -1,7 +1,10 @@
 <launch>
 	<arg name="js" default="js0"/>
 	<arg name="model" default="$(find FullMech_Rep)/urdf/FullMech_Rep.urdf"/>
-	<param name="robot_description" command="$(find xacro)/xacro.py $(arg model)" />
+	<!-- <param name="robot_description" command="$(find xacro)/xacro.py $(arg model)" /> -->
+	<param
+    name="robot_description"
+    textfile="$(find FullMech_Rep)/urdf/FullMech_Rep.urdf" />
 
 	<!-- Launch an empty gazebo world -->
 	<include
@@ -12,7 +15,7 @@
 		name="tf_footprint_base"
 		pkg="tf"
 		type="static_transform_publisher"
-		args="0 0 0 0 0 0 base_link base_footprint 40" />
+		args="0 0 0 0 0 0 drivetrain base_footprint 40" />
 	
 	<!-- spawn the robot model using the urdf -->
 	<node
@@ -28,6 +31,18 @@
 		pkg="rostopic"
 		type="rostopic"
 		args="pub /calibrated std_msgs/Bool true" />
+
+	<!-- Publishes the joint states -->
+	<!-- <node
+		name="joint_state_publisher"
+		pkg="joint_state_publisher"
+		type="joint_state_publisher" /> -->
+
+	<!-- Publishes the transforms between the base_link (drivetrain) and the rest of the robot's links -->
+	<node
+		name="robot_state_publisher"
+		pkg="robot_state_publisher"
+		type="state_publisher" />
 
 	<!-- Load the joint state controller parameters -->
 	<rosparam command="load"

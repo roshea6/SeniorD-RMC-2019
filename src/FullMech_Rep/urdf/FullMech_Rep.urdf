@@ -509,6 +509,76 @@
       velocity="0.25" />
   </joint>
 
+  <!-- Link for laser scanner -->
+  <link name="sensor_laser">
+    <inertial>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <mass value="1" />
+        <inertia
+        ixx="0.00598133477437682"
+        ixy="8.04804660631611E-10"
+        ixz="-1.37907950166563E-12"
+        iyy="0.00598133797963134"
+        iyz="-1.53294491952911E-11"
+        izz="0.0109596153406548" />
+    </inertial>
+
+    <visual>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <cylinder radius="0.05" length="0.05"/>
+        </geometry>
+        <material name="white" />
+    </visual>
+
+    <collision>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <geometry>
+        <cylinder radius="0.05" length="0.1"/>
+        </geometry>
+    </collision>
+  </link>
+
+  <!-- Joint to attach the laser scanner to the drivetrain -->
+  <joint name="joint_sensor_laser" type="fixed">
+    <origin xyz="1.05 0.3 0.0" rpy="1.57 0.0 0.0"/>
+    <parent link="drivetrain"/>
+    <child link="sensor_laser"/>
+  </joint>
+
+  <!-- Gazebo plugin for the laser scanner -->
+  <gazebo reference="sensor_laser">
+    <sensor type="ray" name="head_hokuyo_sensor">
+      <pose>0 0 0 0 0 0</pose>
+      <visualize>false</visualize>
+      <update_rate>20</update_rate>
+      <ray>
+        <scan>
+          <horizontal>
+            <samples>720</samples>
+            <resolution>1</resolution>
+            <min_angle>-1.570796</min_angle>
+            <max_angle>1.570796</max_angle>
+          </horizontal>
+        </scan>
+        <range>
+          <min>0.10</min>
+          <max>10.0</max>
+          <resolution>0.01</resolution>
+        </range>
+        <noise>
+          <type>gaussian</type>
+          <mean>0.0</mean>
+          <stddev>0.01</stddev>
+        </noise>
+      </ray>
+      <plugin name="gazebo_ros_head_hokuyo_controller" filename="libgazebo_ros_laser.so">
+        <topicName>/laser_scan</topicName>
+        <frameName>sensor_laser</frameName>
+      </plugin>
+    </sensor>
+  </gazebo>
+
   <!-- Transmission for the end effector rotation -->
   <transmission name="end_effector_rotate">
     <type>transmission_interface/SimpleTransmission</type>
