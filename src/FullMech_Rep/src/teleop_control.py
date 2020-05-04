@@ -22,7 +22,7 @@ class teleopController(object):
 		self.end_effector_rack_pub = rospy.Publisher('/end_effector_rack_controller/command', Float64, queue_size=1)
 		self.dispense_dump_pub = rospy.Publisher('/dispense_dump_controller/command', Float64, queue_size=1)
 		self.dispense_scissor_pub = rospy.Publisher('/dispense_scissor_controller/command', Float64, queue_size=1)
-		self.camera_pos_pub = rospy.Publisher('/camera_controller/command', Float64, queue_size=1)
+		self.camera_pos_pub = rospy.Publisher('/camera_joint_controller/command', Float64, queue_size=1)
 
 		# Indexes of the joints in the joint state message
 		self.rotate_idx = 0
@@ -84,7 +84,7 @@ class teleopController(object):
 			vel_msg.linear.z = 0
 			vel_msg.angular.x = 0
 			vel_msg.angular.y = 0
-			vel_msg.angular.z = msg.axes[3]*1.5 # Right joysick left and right
+			vel_msg.angular.z = msg.axes[3]*1 # Right joysick left and right
 
 			self.vel_pub.publish(vel_msg)
 

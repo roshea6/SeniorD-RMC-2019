@@ -10,15 +10,16 @@
       <origin
         xyz="0.427967702655067 -1.2478399767059E-18 0.115370408915359"
         rpy="0 0 0" />
-      <mass
-        value="3.77582130485992" />
+      <mass value=".01"/>
+      <!-- <mass
+        value="3.77582130485992" /> -->
       <inertia
-        ixx="0.0534389873542028"
+        ixx="0.000534389873542028"
         ixy="-8.6678466130766E-17"
         ixz="-0.000464379665206139"
-        iyy="0.321833554389598"
+        iyy="0.000321833554389598"
         iyz="-2.26109654584817E-18"
-        izz="0.373546703309241" />
+        izz="0.000373546703309241" />
     </inertial>
     <visual>
       <origin
@@ -50,8 +51,9 @@
       <origin
         xyz="2.03883021576701E-10 1.33968752757951E-10 0.00351465143708507"
         rpy="0 0 0" />
-      <mass
-        value="1.22527899288125" />
+      <mass value="1"/>
+      <!-- <mass
+        value="1.22527899288125" /> -->
       <inertia
         ixx="0.00598133477433838"
         ixy="8.04814637676843E-10"
@@ -108,8 +110,9 @@
       <origin
         xyz="-1.34570687926328E-10 1.89999876942792E-10 0.00351465143708507"
         rpy="0 0 0" />
-      <mass
-        value="1.22527899288124" />
+      <mass value="1"/>
+      <!-- <mass
+        value="1.22527899288125" /> -->
       <inertia
         ixx="0.00598133445312605"
         ixy="4.08741008053881E-10"
@@ -166,8 +169,9 @@
       <origin
         xyz="1.14839249221177E-11 -3.22153193010877E-10 0.0035146514370851"
         rpy="0 0 0" />
-      <mass
-        value="1.22527899288124" />
+      <mass value="1"/>
+      <!-- <mass
+        value="1.22527899288125" /> -->
       <inertia
         ixx="0.00598133477451402"
         ixy="8.04836569568909E-10"
@@ -224,8 +228,9 @@
       <origin
         xyz="2.03883021576701E-10 1.33968725002376E-10 0.00351465143708507"
         rpy="0 0 0" />
-      <mass
-        value="1.22527899288125" />
+      <mass value="1"/>
+      <!-- <mass
+        value="1.22527899288125" /> -->
       <inertia
         ixx="0.00598133477433839"
         ixy="8.04814633773715E-10"
@@ -282,7 +287,7 @@
       <origin
         xyz="0.175 -1.15558955938244E-16 0.425714894314765"
         rpy="0 0 0" />
-      <mass value=".01"/>
+      <mass value=".0001"/>
       <!-- <mass value="0.248919999999999" /> -->
       <inertia
         ixx="0.00162641116102266"
@@ -340,7 +345,7 @@
       <origin
         xyz="-0.0107846080095739 0.118085027911473 1.32411686714264E-16"
         rpy="0 0 0" />
-      <mass value=".01"/>
+      <mass value=".0001"/>
       <!-- <mass value="0.490259886128" /> -->
       <inertia
         ixx="0.00778343636692995"
@@ -398,7 +403,7 @@
       <origin
         xyz="-1.94289029309402E-16 -1.11022302462516E-16 0.1"
         rpy="0 0 0" />
-      <mass value=".01"/>
+      <mass value=".0001"/>
       <!-- <mass
         value="4.12035499957539" /> -->
       <inertia
@@ -457,7 +462,7 @@
       <origin
         xyz="0.737944768013426 -1.29757316003065E-15 0.223255983183746"
         rpy="0 0 0" />
-      <mass value=".01"/>
+      <mass value=".0001"/>
       <!-- <mass
         value="4.12035499957539" /> -->
       <inertia
@@ -515,7 +520,7 @@
   <link name="sensor_laser">
     <inertial>
         <origin xyz="0 0 0" rpy="0 0 0" />
-        <mass value="1" />
+        <mass value=".0001" />
         <inertia
         ixx="0.00598133477437682"
         ixy="8.04804660631611E-10"
@@ -543,7 +548,7 @@
 
   <!-- Joint to attach the laser scanner to the drivetrain -->
   <joint name="joint_sensor_laser" type="fixed">
-    <origin xyz="1.05 0 0.5" rpy="0 0.0 0.0"/>
+    <origin xyz="1.05 0 0.4" rpy="0 0.5 0.0"/>
     <parent link="drivetrain"/>
     <child link="sensor_laser"/>
   </joint>
@@ -552,7 +557,7 @@
   <gazebo reference="sensor_laser">
     <sensor type="ray" name="head_hokuyo_sensor">
       <pose>0 0 0 0 0 0</pose>
-      <visualize>false</visualize>
+      <visualize>true</visualize>
       <update_rate>20</update_rate>
       <ray>
         <scan>
@@ -565,7 +570,7 @@
         </scan>
         <range>
           <min>0.10</min>
-          <max>10.0</max>
+          <max>6.0</max>
           <resolution>0.01</resolution>
         </range>
         <noise>
@@ -581,7 +586,7 @@
     </sensor>
   </gazebo>
 
-   <!-- Camera -->
+  <!-- Camera -->
   <link name="camera_link">
     <collision>
       <origin xyz="0 0 0" rpy="0 0 0"/>
@@ -599,7 +604,7 @@
     </visual>
 
     <inertial>
-      <mass value="1e-5" />
+      <mass value="0.000005" />
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <inertia ixx="1e-6" ixy="0" ixz="0" iyy="1e-6" iyz="0" izz="1e-6" />
     </inertial>
@@ -608,7 +613,7 @@
   <!-- Joint to attach camera to drivetrain -->
   <joint name="camera_joint" type="continuous">
     <axis xyz="0 0 1" />
-    <origin xyz="0 0.2 0.45" rpy="0 0 3.14"/>
+    <origin xyz="0 0.0 0.45" rpy="0 0 3.14"/>
     <parent link="drivetrain"/>
     <child link="camera_link"/>
   </joint>
@@ -620,7 +625,7 @@
       <camera name="head">
         <horizontal_fov>1.3962634</horizontal_fov>
         <image>
-          <width>720</width>
+          <width>640</width>
           <height>480</height>
           <format>R8G8B8</format>
         </image>
@@ -630,9 +635,6 @@
         </clip>
         <noise>
           <type>gaussian</type>
-          <!-- Noise is sampled independently per pixel on each frame.
-               That pixel's noise value is added to each of its color
-               channels, which at that point lie in the range [0,1]. -->
           <mean>0.0</mean>
           <stddev>0.007</stddev>
         </noise>

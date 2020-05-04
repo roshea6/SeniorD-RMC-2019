@@ -24,7 +24,7 @@
 		name="spawn_model"
 		pkg="gazebo_ros"
 		type="spawn_model"
-		args="-urdf -model FullMech_Rep -x 0 -y 0 -z 0.5 -R 0 -P 0 -Y 0 -param robot_description"
+		args="-urdf -model FullMech_Rep -x 0 -y 0 -z 0.1 -R 0 -P 0 -Y 0 -param robot_description"
 		output="screen" />
 	
 	
@@ -79,7 +79,7 @@
 	<!-- Controller for camera joint -->
 	<rosparam command="load"
             file="$(find FullMech_Rep)/config/camera.yaml"
-            ns="camera_controller" />
+            ns="camera_joint_controller" />
 
 	<!-- Launch the joint state controller node -->
 	<node name="rmc_controller_spawner" pkg="controller_manager" type="spawner"
@@ -89,7 +89,7 @@
 			dispense_scissor_controller
 			dispense_dump_controller
 			diffdrive_controller
-			camera_controller
+			camera_joint_controller
 			--shutdown-timeout 3"/>
 
 	<!-- <node name="rqt_robot_steering" pkg="rqt_robot_steering" type="rqt_robot_steering">

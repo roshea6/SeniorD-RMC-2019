@@ -1,7 +1,9 @@
 <launch>
+	<arg name="js" default="js1"/>
+
 
 	<include file="$(find FullMech_Rep)/launch/joint_control.launch">
-		<arg name="js" value="js1"/>
+		<arg name="js" value="$(arg js)"/>
 	</include>
 
 	<arg name="scan_topic" default="laser_scan" />

@@ -4,9 +4,9 @@
 	<arg name="cam" default="1"/>
 
 	<!-- Launch video feed launch file -->
-	<include file="$(find apriltag_detection)/launch/webcam.launch">
+	<!-- <include file="$(find apriltag_detection)/launch/webcam.launch">
 		<arg name="cam" value="$(arg cam)"/>
-	</include>
+	</include> -->
 
 	<!-- Launch Tagslam -->
 	<include file="$(find tagslam)/launch/tagslam.launch">
@@ -17,7 +17,7 @@
 
 	<!-- Launch apriltag detector -->
 	<include file="$(find tagslam)/launch/apriltag_detector_node.launch">
-		<arg name="cam_topic" value="/camera_img"/>
+		<arg name="cam_topic" value="/rmcbot/camera1/image_raw/compressed"/>
 	</include>
 
 	<!-- Launch RVIZ to visualize -->
