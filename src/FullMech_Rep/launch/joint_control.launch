@@ -1,7 +1,8 @@
 <launch>
 	<arg name="js" default="js1"/>
 	<arg name="model" default="$(find FullMech_Rep)/urdf/FullMech_Rep.urdf"/>
-	<arg name="world_name" default="$(find husky_gazebo)/worlds/clearpath_playpen.world"/>
+	<!-- <arg name="world_name" default="$(find husky_gazebo)/worlds/clearpath_playpen.world"/> -->
+	<arg name="world_name" default="$(find FullMech_Rep)/world/tag_world.world"/>
 	<!-- <param name="robot_description" command="$(find xacro)/xacro.py $(arg model)" /> -->
 	<param
     name="robot_description"
@@ -9,7 +10,7 @@
 
 	<!-- Launch an empty gazebo world -->
 	<include file="$(find gazebo_ros)/launch/empty_world.launch">
-		<!-- <arg name="world_name" value="$(arg world_name)"/> -->
+		<arg name="world_name" value="$(arg world_name)"/>
 	</include>
 	
 	<!-- Transform publisher between base_link of robot and base_footprint -->
