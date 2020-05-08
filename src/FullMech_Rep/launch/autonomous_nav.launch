@@ -1,0 +1,32 @@
+<launch>
+
+    <arg name="js" default="js1"/>
+
+    <arg name="map_file" default="$(find FullMech_Rep)/maps/obstacle_world.yaml"/>
+
+    <include file="$(find FullMech_Rep)/launch/joint_control.launch"/>
+
+    <!-- Map server -->
+    <node pkg="map_server" name="map_server" type="map_server" args="$(arg map_file)"/>
+
+    <!-- AMCL -->
+    <include file="$(find FullMech_Rep)/launch/amcl.launch"/>
+
+    <!-- Move base -->
+    <include file="$(find FullMech_Rep)/launch/move_base.launch"/>
+
+    <node name="rviz" pkg="rviz" type="rviz"
+    args="-d $(find FullMech_Rep)/rviz/autonomous_nav.rviz" />
+
+    <node pkg="FullMech_Rep" type="model_location_pub.py" name="model_location_pub"/>
+
+	<!-- joy node -->
+	<node respawn="true" pkg="joy" type="joy_node" name="joy" >
+		<param name="dev" type="string" value="/dev/input/$(arg js)" />
+		<param name="deadzone" value="0.12" />
+		<!-- <param name="autorepeat_rate" value="10"/> -->
+	</node>
+
+	<node pkg="FullMech_Rep" type="teleop_control.py" name="teleop_node" output="screen"/>
+
+</launch>
