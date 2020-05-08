@@ -1,0 +1,7 @@
+# parameters for Gazebo ROS control plugin
+gazebo_ros_control/pid_gains:
+    rotate: {p: 100.0, i: 0.01, d: 0.00001}
+    rack: {p: 100.0, i: 0.01, d: 0.00001}
+    scissor: {p: 100.0, i: 0.01, d: 0.00001}
+    dispense_rotate: {p: 100.0, i: 0.01, d: 0.00001}
+    # camera_joint: {p: 100.0, i: 0.01, d: 0.00001}

@@ -2,7 +2,7 @@
 
     <arg name="js" default="js1"/>
 
-    <arg name="map_file" default="$(find FullMech_Rep)/maps/obstacle_world.yaml"/>
+    <arg name="map_file" default="$(find FullMech_Rep)/maps/small_obstacle_map.yaml"/>
 
     <include file="$(find FullMech_Rep)/launch/joint_control.launch"/>
 

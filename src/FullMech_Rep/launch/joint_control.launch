@@ -41,6 +41,9 @@
 		pkg="joint_state_publisher"
 		type="joint_state_publisher" /> -->
 
+	<!-- Load PID gain params -->
+	<!-- <rosparam file="$(find FullMech_Rep)/config/gazebo_ros_control_params.yaml" command="load"/> -->
+
 	<!-- Publishes the transforms between the base_link (drivetrain) and the rest of the robot's links -->
 	<node
 		name="robot_state_publisher"
