@@ -13,7 +13,10 @@ pose_covariance_diagonal: [0.001, 0.001, 0.001, 0.001, 0.001, 0.03]
 twist_covariance_diagonal: [0.001, 0.001, 0.001, 0.001, 0.001, 0.03]
 
 # Top level frame (link) of the robot description
-base_frame_id: drivetrain
+# This is intentionally wrong because the odometry published by this is wrong
+# A bad transform will be published just between bad_odom and this link that should
+# be totally ignored
+base_frame_id: unnecessary_frame_pls_ignore
 
 # Velocity and acceleration limits for the robot
 linear:
@@ -28,3 +31,11 @@ angular:
     max_velocity           : 1.0   # rad/s
     has_acceleration_limits: true
     max_acceleration       : 2.0   # rad/s^2
+
+
+# Topic name for the odometry topic
+# This is named bad_odom for a reason. We don't use this because its based
+# on the cmd_vel topics instead of the actual position of the robot.
+# The robot doesn't turn well for some unknown reason so these become super off
+# very very quickly
+odom_frame_id: /bad_odom

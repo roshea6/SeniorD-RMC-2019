@@ -134,10 +134,10 @@
       <pose frame=''>-3.11832 1.38647 0 0 -0 0</pose>
     </model>
     <state world_name='default'>
-      <sim_time>561 53000000</sim_time>
-      <real_time>32 89782703</real_time>
-      <wall_time>1588643446 217327533</wall_time>
-      <iterations>32003</iterations>
+      <sim_time>603 664000000</sim_time>
+      <real_time>42 719701083</real_time>
+      <wall_time>1588658292 566219469</wall_time>
+      <iterations>42611</iterations>
       <model name='Apriltag36_11_00000'>
         <pose frame=''>-1.89472 -0.511589 1.17698 -3.14159 1.57 -3.14159</pose>
         <scale>1 1 1</scale>
@@ -149,10 +149,10 @@
         </link>
       </model>
       <model name='Apriltag36_11_00001'>
-        <pose frame=''>-2.10484 0.492742 0.487887 0 1.56195 0</pose>
+        <pose frame=''>-1.98854 0.475425 0.488916 0.172374 1.56195 -1e-06</pose>
         <scale>1 1 1</scale>
         <link name='main'>
-          <pose frame=''>-2.10484 0.492742 0.487887 0 1.56195 0</pose>
+          <pose frame=''>-1.98854 0.475425 0.488916 0.172374 1.56195 -1e-06</pose>
           <velocity>0 0 0 0 -0 0</velocity>
           <acceleration>0 0 0 0 -0 0</acceleration>
           <wrench>0 0 0 0 -0 0</wrench>
@@ -169,13 +169,13 @@
         </link>
       </model>
       <model name='unit_box'>
-        <pose frame=''>-2.65965 -0.239459 0.499995 0 1e-05 0</pose>
+        <pose frame=''>-2.65966 -0.239459 0.499995 0 -1e-05 0</pose>
         <scale>1 1 1</scale>
         <link name='link'>
-          <pose frame=''>-2.65965 -0.239459 0.499995 0 1e-05 0</pose>
+          <pose frame=''>-2.65966 -0.239459 0.499995 0 -1e-05 0</pose>
           <velocity>0 0 0 0 -0 0</velocity>
-          <acceleration>0.010615 -0.006191 -9.78231 0.012424 0.021225 1.8e-05</acceleration>
-          <wrench>0.010615 -0.006191 -9.78231 0 -0 0</wrench>
+          <acceleration>-0.010615 0.006191 -9.78231 -0.012424 -0.021225 1.8e-05</acceleration>
+          <wrench>-0.010615 0.006191 -9.78231 0 -0 0</wrench>
         </link>
       </model>
       <light name='sun'>
@@ -184,7 +184,7 @@
     </state>
     <gui fullscreen='0'>
       <camera name='user_camera'>
-        <pose frame=''>7.09596 -1.34996 2.76135 0 0.365801 2.92817</pose>
+        <pose frame=''>-2.30858 -4.11324 2.32367 0 0.385801 1.52419</pose>
         <view_controller>orbit</view_controller>
         <projection_type>perspective</projection_type>
       </camera>

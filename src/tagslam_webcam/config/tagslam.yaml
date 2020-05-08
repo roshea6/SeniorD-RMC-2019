@@ -45,34 +45,34 @@ bodies:
          z: 1.0e-05
      type: simple
      tags:
-     - id: 0
-       size: 1.0
-       pose:
-         position:
-           x: 0.76493
-           y: -0.272135
-           z: 0.676985
-         rotation:
-           x: 0
-           y: 1.57
-           z: 0
-         position_noise:
-           x: 0.0001
-           y: 0.0001
-           z: 0.0001
-         rotation_noise:
-           x: 1.0e-05
-           y: 1.0e-05
-           z: 1.0e-05
+    #  - id: 0
+    #    size: 1.0
+    #    pose:
+    #      position:
+    #        x: 0.76493
+    #        y: -0.272135
+    #        z: 0.676985
+    #      rotation:
+    #        x: 0
+    #        y: 1.57
+    #        z: 0
+    #      position_noise:
+    #        x: 0.0001
+    #        y: 0.0001
+    #        z: 0.0001
+    #      rotation_noise:
+    #        x: 1.0e-05
+    #        y: 1.0e-05
+    #        z: 1.0e-05
      - id: 1
        size: 1.0
        pose:
         position:
-          x: 0.55482
-          y: 0.732282
-          z: -0.012108
+          x: 0.67112
+          y: 0.714881
+          z: -0.011079
         rotation:
-          x: 0
+          x: 0.172374
           y: 1.56195
           z: 0
         position_noise:

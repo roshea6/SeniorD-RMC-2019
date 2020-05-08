@@ -1,8 +1,8 @@
 <launch>
 	<arg name="js" default="js1"/>
 	<arg name="model" default="$(find FullMech_Rep)/urdf/FullMech_Rep.urdf"/>
-	<!-- <arg name="world_name" default="$(find husky_gazebo)/worlds/clearpath_playpen.world"/> -->
-	<arg name="world_name" default="$(find FullMech_Rep)/world/tag_world.world"/>
+	<arg name="world_name" default="$(find husky_gazebo)/worlds/clearpath_playpen.world"/>
+	<!-- <arg name="world_name" default="$(find FullMech_Rep)/world/tag_world.world"/> -->
 	<!-- <param name="robot_description" command="$(find xacro)/xacro.py $(arg model)" /> -->
 	<param
     name="robot_description"
