@@ -8,17 +8,18 @@
     name="drivetrain">
     <inertial>
       <origin
-        xyz="0.427967702655067 0.115370408915359 -5.27177338473504E-18"
+        xyz="0.427967702655067 -1.2478399767059E-18 0.115370408915359"
         rpy="0 0 0" />
-      <mass
-        value="3.77582130485992" />
+      <mass value=".01"/>
+      <!-- <mass
+        value="3.77582130485992" /> -->
       <inertia
-        ixx="0.0534389873542028"
-        ixy="-0.000464379665206139"
-        ixz="8.51312381537968E-17"
-        iyy="0.373546703309241"
-        iyz="1.94801498392383E-18"
-        izz="0.321833554389598" />
+        ixx="0.000534389873542028"
+        ixy="-8.6678466130766E-17"
+        ixz="-0.000464379665206139"
+        iyy="0.000321833554389598"
+        iyz="-2.26109654584817E-18"
+        izz="0.000373546703309241" />
     </inertial>
     <visual>
       <origin
@@ -48,17 +49,18 @@
     name="wheel1">
     <inertial>
       <origin
-        xyz="-1.30975563727986E-10 -2.06154565640659E-10 0.00351465143708507"
+        xyz="2.03883021576701E-10 1.33968752757951E-10 0.00351465143708507"
         rpy="0 0 0" />
-      <mass
-        value="1.22527899288124" />
+      <mass value="0.1"/>
+      <!-- <mass
+        value="1.22527899288125" /> -->
       <inertia
-        ixx="0.00598133477437682"
-        ixy="8.04804660631611E-10"
-        ixz="-1.37907950166563E-12"
-        iyy="0.00598133797963134"
-        iyz="-1.53294491952911E-11"
-        izz="0.0109596153406548" />
+        ixx="0.00598133477433838"
+        ixy="8.04814637676843E-10"
+        ixz="5.66524331353205E-12"
+        iyy="0.00598133797966457"
+        iyz="7.67346880397323E-12"
+        izz="0.0109596153406496" />
     </inertial>
     <visual>
       <origin
@@ -90,29 +92,33 @@
     name="axle1"
     type="continuous">
     <origin
-      xyz="0.15 0.115 0.18271"
-      rpy="0 3.14 0.70807" />
+      xyz="0.15 -0.18271 0.115"
+      rpy="1.5708 -0.53093 3.14" />
     <parent
       link="drivetrain" />
     <child
       link="wheel1" />
     <axis
       xyz="0 0 1" />
+    <!-- <limit
+      effort="5"
+      velocity="0.25" /> -->
   </joint>
   <link
     name="wheel2">
     <inertial>
       <origin
-        xyz="-1.34570660170752E-10 1.89999863065005E-10 0.00351465143708507"
+        xyz="-1.34570687926328E-10 1.89999876942792E-10 0.00351465143708507"
         rpy="0 0 0" />
-      <mass
-        value="1.22527899288124" />
+      <mass value="0.1"/>
+      <!-- <mass
+        value="1.22527899288125" /> -->
       <inertia
         ixx="0.00598133445312605"
-        ixy="4.08741006969679E-10"
-        ixz="-7.13003401932794E-10"
+        ixy="4.08741008053881E-10"
+        ixz="-7.13003401965768E-10"
         iyy="0.00598133605794787"
-        iyz="1.93637321593974E-10"
+        iyz="1.93637321583713E-10"
         izz="0.0109596137019381" />
     </inertial>
     <visual>
@@ -122,7 +128,7 @@
       <geometry>
         <cylinder radius=".12" length="0.05"/>
         <!-- <mesh
-          filename="package://FullMech_Rep/meshes/wheel2.STL" /> -->
+          filename="package://FullMech_Rep/meshes/wheel1.STL" /> -->
       </geometry>
       <material
         name="">
@@ -137,7 +143,7 @@
       <geometry>
         <cylinder radius=".12" length="0.05"/>
         <!-- <mesh
-          filename="package://FullMech_Rep/meshes/wheel2.STL" /> -->
+          filename="package://FullMech_Rep/meshes/wheel1.STL" /> -->
       </geometry>
     </collision>
   </link>
@@ -145,14 +151,17 @@
     name="axle2"
     type="continuous">
     <origin
-      xyz="0.15 0.115 -0.18271"
-      rpy="3.1416 0 -2.3981" />
+      xyz="0.15 0.18271 0.115"
+      rpy="1.5708 0.74348 3.1416" />
     <parent
       link="drivetrain" />
     <child
       link="wheel2" />
     <axis
       xyz="0 0 1" />
+    <!-- <limit
+      effort="5"
+      velocity="0.25" /> -->
   </joint>
   <link
     name="wheel3">
@@ -160,14 +169,15 @@
       <origin
         xyz="1.14839249221177E-11 -3.22153193010877E-10 0.0035146514370851"
         rpy="0 0 0" />
-      <mass
-        value="1.22527899288124" />
+      <mass value="0.1"/>
+      <!-- <mass
+        value="1.22527899288125" /> -->
       <inertia
-        ixx="0.00598133477451403"
-        ixy="8.04836566749983E-10"
-        ixz="6.52449872839693E-12"
+        ixx="0.00598133477451402"
+        ixy="8.04836569568909E-10"
+        ixz="6.52449869496267E-12"
         iyy="0.00598133797959156"
-        iyz="-2.8119660990451E-11"
+        iyz="-2.81196609749864E-11"
         izz="0.0109596153407522" />
     </inertial>
     <visual>
@@ -177,7 +187,7 @@
       <geometry>
         <cylinder radius=".12" length="0.05"/>
         <!-- <mesh
-          filename="package://FullMech_Rep/meshes/wheel3.STL" /> -->
+          filename="package://FullMech_Rep/meshes/wheel1.STL" /> -->
       </geometry>
       <material
         name="">
@@ -192,7 +202,7 @@
       <geometry>
         <cylinder radius=".12" length="0.05"/>
         <!-- <mesh
-          filename="package://FullMech_Rep/meshes/wheel3.STL" /> -->
+          filename="package://FullMech_Rep/meshes/wheel1.STL" /> -->
       </geometry>
     </collision>
   </link>
@@ -200,30 +210,34 @@
     name="axle3"
     type="continuous">
     <origin
-      xyz="0.7 0.115 -0.18271"
-      rpy="3.1416 0 -2.2351" />
+      xyz="0.7 0.18271 0.115"
+      rpy="1.5708 0.90647 3.1416" />
     <parent
       link="drivetrain" />
     <child
       link="wheel3" />
     <axis
       xyz="0 0 1" />
+    <!-- <limit
+      effort="5"
+      velocity="0.25" /> -->
   </joint>
   <link
     name="wheel4">
     <inertial>
       <origin
-        xyz="-1.30975563727986E-10 -2.06154704418537E-10 0.00351465143708507"
+        xyz="2.03883021576701E-10 1.33968725002376E-10 0.00351465143708507"
         rpy="0 0 0" />
-      <mass
-        value="1.22527899288124" />
+      <mass value="0.1"/>
+      <!-- <mass
+        value="1.22527899288125" /> -->
       <inertia
-        ixx="0.00598133477437683"
-        ixy="8.04804674509399E-10"
-        ixz="-1.3790795214254E-12"
-        iyy="0.00598133797963135"
-        iyz="-1.53294484730678E-11"
-        izz="0.0109596153406548" />
+        ixx="0.00598133477433839"
+        ixy="8.04814633773715E-10"
+        ixz="5.66524755653519E-12"
+        iyy="0.00598133797966457"
+        iyz="7.6734696431667E-12"
+        izz="0.0109596153406496" />
     </inertial>
     <visual>
       <origin
@@ -232,7 +246,7 @@
       <geometry>
         <cylinder radius=".12" length="0.05"/>
         <!-- <mesh
-          filename="package://FullMech_Rep/meshes/wheel4.STL" /> -->
+          filename="package://FullMech_Rep/meshes/wheel1.STL" /> -->
       </geometry>
       <material
         name="">
@@ -244,10 +258,10 @@
       <origin
         xyz="0 0 0"
         rpy="0 0 0" />
-      <geometry>
+     <geometry>
         <cylinder radius=".12" length="0.05"/>
         <!-- <mesh
-          filename="package://FullMech_Rep/meshes/wheel4.STL" /> -->
+          filename="package://FullMech_Rep/meshes/wheel1.STL" /> -->
       </geometry>
     </collision>
   </link>
@@ -255,22 +269,25 @@
     name="axle4"
     type="continuous">
     <origin
-      xyz="0.7 0.115 0.18271"
-      rpy="0 3.14 0.70807" />
+      xyz="0.7 -0.18271 0.115"
+      rpy="1.5708 -0.53093 3.14" />
     <parent
       link="drivetrain" />
     <child
       link="wheel4" />
     <axis
       xyz="0 0 1" />
+    <!-- <limit
+      effort="5"
+      velocity="0.25" /> -->
   </joint>
   <link
     name="storage">
     <inertial>
       <origin
-        xyz="0.175 0.276401777374457 2.2812918654342E-16"
+        xyz="0.175 -1.15558955938244E-16 0.425714894314765"
         rpy="0 0 0" />
-      <mass value=".01"/>
+      <mass value=".0001"/>
       <!-- <mass value="0.248919999999999" /> -->
       <inertia
         ixx="0.00162641116102266"
@@ -315,25 +332,20 @@
     <child
       link="storage" />
     <axis
-      xyz="0 1 0" />
-    <!-- <limit
-      lower="-0.15"
-      upper="0.0"
-      effort="5"
-      velocity="0.25" /> -->
+      xyz="0 0 1" />
     <limit
-      lower="-0.15"
-      upper="0.3"
+      lower="-0.3"
+      upper="0.1"
       effort="5"
       velocity="0.25" />
   </joint>
   <link
-    name="dispense">
+    name="dispense_rotate">
     <inertial>
       <origin
-        xyz="-0.0212783405919354 0.131718171029254 -4.30659496104356E-16"
+        xyz="-0.0107846080095739 0.118085027911473 1.32411686714264E-16"
         rpy="0 0 0" />
-      <mass value=".01"/>
+      <mass value=".0001"/>
       <!-- <mass value="0.490259886128" /> -->
       <inertia
         ixx="0.00778343636692995"
@@ -349,7 +361,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://FullMech_Rep/meshes/dispense.STL" />
+          filename="package://FullMech_Rep/meshes/dispense_rotate.STL" />
       </geometry>
       <material
         name="">
@@ -363,20 +375,20 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://FullMech_Rep/meshes/dispense.STL" />
+          filename="package://FullMech_Rep/meshes/dispense_rotate.STL" />
       </geometry>
     </collision>
   </link>
   <joint
-    name="dispense"
+    name="dispense_rotate"
     type="revolute">
     <origin
-      xyz="0.175 0.27513 0"
-      rpy="0 0 0" />
+      xyz="0.175 0 0.42444"
+      rpy="1.5708 0 0" />
     <parent
       link="storage" />
     <child
-      link="dispense" />
+      link="dispense_rotate" />
     <axis
       xyz="0 0 -1" />
     <limit
@@ -389,9 +401,9 @@
     name="rotate_conv">
     <inertial>
       <origin
-        xyz="0.267944768013426 0.133655983183746 1.29731559949039E-15"
+        xyz="-1.94289029309402E-16 -1.11022302462516E-16 0.1"
         rpy="0 0 0" />
-      <mass value=".01"/>
+      <mass value=".0001"/>
       <!-- <mass
         value="4.12035499957539" /> -->
       <inertia
@@ -430,19 +442,14 @@
     name="rotate"
     type="revolute">
     <origin
-      xyz="0.47 0.0896 0"
-      rpy="0 0 0" />
+      xyz="0.73794 0.1 0.22326"
+      rpy="1.5708 1.2662 0" />
     <parent
       link="drivetrain" />
     <child
       link="rotate_conv" />
     <axis
       xyz="0 0 1" />
-    <!-- <limit
-      lower="0.7"
-      upper="0.8"
-      effort="5"
-      velocity="0.5" /> -->
     <limit
       lower="0.384"
       upper="1.25"
@@ -453,9 +460,9 @@
     name="translation">
     <inertial>
       <origin
-        xyz="0.737944768013426 0.223255983183746 1.29757316003065E-15"
+        xyz="0.737944768013426 -1.29757316003065E-15 0.223255983183746"
         rpy="0 0 0" />
-      <mass value=".01"/>
+      <mass value=".0001"/>
       <!-- <mass
         value="4.12035499957539" /> -->
       <inertia
@@ -494,20 +501,171 @@
     name="rack"
     type="prismatic">
     <origin
-      xyz="-0.47 -0.0896 0"
-      rpy="0 0 0" />
+      xyz="-0.0083328 -0.77093 0.1"
+      rpy="-1.5708 0 1.2662" />
     <parent
       link="rotate_conv" />
     <child
       link="translation" />
     <axis
-      xyz="-0.2999 0.95397 0" />
+      xyz="-0.2999 0 0.95397" />
     <limit
       lower="-0.5"
       upper="0.0"
       effort="5"
       velocity="0.25" />
   </joint>
+
+  <!-- Link for laser scanner -->
+  <link name="sensor_laser">
+    <inertial>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <mass value=".000001" />
+        <inertia
+        ixx="0.00598133477437682"
+        ixy="8.04804660631611E-10"
+        ixz="-1.37907950166563E-12"
+        iyy="0.00598133797963134"
+        iyz="-1.53294491952911E-11"
+        izz="0.0109596153406548" />
+    </inertial>
+
+    <visual>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <cylinder radius="0.05" length="0.05"/>
+        </geometry>
+        <material name="white" />
+    </visual>
+
+    <collision>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <geometry>
+        <cylinder radius="0.05" length="0.1"/>
+        </geometry>
+    </collision>
+  </link>
+
+  <!-- Joint to attach the laser scanner to the drivetrain -->
+  <joint name="joint_sensor_laser" type="fixed">
+    <origin xyz="1.05 0 0.4" rpy="0 0.0 0.0"/>
+    <parent link="drivetrain"/>
+    <child link="sensor_laser"/>
+  </joint>
+
+  <!-- Gazebo plugin for the laser scanner -->
+  <gazebo reference="sensor_laser">
+    <sensor type="ray" name="head_hokuyo_sensor">
+      <pose>0 0 0 0 0 0</pose>
+      <visualize>false</visualize>
+      <update_rate>20</update_rate>
+      <ray>
+        <scan>
+          <horizontal>
+            <samples>720</samples>
+            <resolution>1</resolution>
+            <min_angle>-1.570796</min_angle>
+            <max_angle>1.570796</max_angle>
+          </horizontal>
+        </scan>
+        <range>
+          <min>0.10</min>
+          <max>6.0</max>
+          <resolution>0.01</resolution>
+        </range>
+        <noise>
+          <type>gaussian</type>
+          <mean>0.0</mean>
+          <stddev>0.01</stddev>
+        </noise>
+      </ray>
+      <plugin name="gazebo_ros_head_hokuyo_controller" filename="libgazebo_ros_laser.so">
+        <topicName>/laser_scan</topicName>
+        <frameName>sensor_laser</frameName>
+      </plugin>
+    </sensor>
+  </gazebo>
+
+  <!-- Camera -->
+  <link name="camera_link">
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <box size=".05 .05 .05"/>
+      </geometry>
+    </collision>
+
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <box size=".05 .05 .05"/>
+      </geometry>
+      <material name="red"/>
+    </visual>
+
+    <inertial>
+      <mass value="0.000005" />
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <inertia ixx="1e-6" ixy="0" ixz="0" iyy="1e-6" iyz="0" izz="1e-6" />
+    </inertial>
+  </link>
+
+  <!-- Joint to attach camera to drivetrain -->
+  <joint name="camera_joint" type="continuous">
+    <axis xyz="0 0 1" />
+    <origin xyz="0 0.0 0.45" rpy="0 0 3.14"/>
+    <parent link="drivetrain"/>
+    <child link="camera_link"/>
+  </joint>
+
+   <!-- gazebo camera -->
+  <gazebo reference="camera_link">
+    <sensor type="camera" name="camera1">
+      <update_rate>30.0</update_rate>
+      <camera name="head">
+        <horizontal_fov>1.3962634</horizontal_fov>
+        <image>
+          <width>640</width>
+          <height>480</height>
+          <format>R8G8B8</format>
+        </image>
+        <clip>
+          <near>0.02</near>
+          <far>300</far>
+        </clip>
+        <noise>
+          <type>gaussian</type>
+          <mean>0.0</mean>
+          <stddev>0.007</stddev>
+        </noise>
+      </camera>
+      <plugin name="camera_controller" filename="libgazebo_ros_camera.so">
+        <alwaysOn>true</alwaysOn>
+        <updateRate>0.0</updateRate>
+        <cameraName>rmcbot/camera1</cameraName>
+        <imageTopicName>image_raw</imageTopicName>
+        <cameraInfoTopicName>camera_info</cameraInfoTopicName>
+        <frameName>camera_link</frameName>
+        <hackBaseline>0.07</hackBaseline>
+        <distortionK1>0.0</distortionK1>
+        <distortionK2>0.0</distortionK2>
+        <distortionK3>0.0</distortionK3>
+        <distortionT1>0.0</distortionT1>
+        <distortionT2>0.0</distortionT2>
+      </plugin>
+    </sensor>
+  </gazebo>
+
+  <!-- Transmission for the camera rotation -->
+  <transmission name="camera_rotate">
+    <type>transmission_interface/SimpleTransmission</type>
+    <actuator name="$camera_rotate_motor">
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+    <joint name="camera_joint">
+      <hardwareInterface>PositionJointInterface</hardwareInterface>
+    </joint>
+  </transmission>
 
   <!-- Transmission for the end effector rotation -->
   <transmission name="end_effector_rotate">
@@ -548,7 +706,7 @@
     <actuator name="$dispense_dump_motor">
       <mechanicalReduction>1</mechanicalReduction>
     </actuator>
-    <joint name="dispense">
+    <joint name="dispense_rotate">
       <hardwareInterface>PositionJointInterface</hardwareInterface>
     </joint>
   </transmission>

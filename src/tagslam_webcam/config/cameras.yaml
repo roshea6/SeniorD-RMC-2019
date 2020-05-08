@@ -1,9 +1,9 @@
 cam0:
   camera_model: pinhole
-  intrinsics: [670.916754364, 669.842876482, 312.955220976, 239.269243774] # from _get_distortion_params.py mtx
-  distortion_model: radtan
-  distortion_coeffs: [0.09573417, -0.45501734,  0.002137,    0.00193082, -1.33289295] # from _get_distortion_params.py dist
+  intrinsics: [381.36246688113556, 320.5, 381.36246688113556, 240.5] #[670.916754364, 669.842876482, 312.955220976, 239.269243774] # from _get_distortion_params.py mtx
+  distortion_model: plumb_bob
+  distortion_coeffs: [0, 0, 0, 0, 0] #[0.09573417, -0.45501734,  0.002137,    0.00193082, -1.33289295] # from _get_distortion_params.py dist
   resolution: [640, 480] # the resolution is the shape of image that cam captures (obviously)
-  rostopic: /camera_img
+  rostopic: /rmcbot/camera1/image_raw/compressed
   tagtopic: /detector/tags
   rig_body: rig

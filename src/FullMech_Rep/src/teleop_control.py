@@ -22,18 +22,21 @@ class teleopController(object):
 		self.end_effector_rack_pub = rospy.Publisher('/end_effector_rack_controller/command', Float64, queue_size=1)
 		self.dispense_dump_pub = rospy.Publisher('/dispense_dump_controller/command', Float64, queue_size=1)
 		self.dispense_scissor_pub = rospy.Publisher('/dispense_scissor_controller/command', Float64, queue_size=1)
+		self.camera_pos_pub = rospy.Publisher('/camera_joint_controller/command', Float64, queue_size=1)
 
 		# Indexes of the joints in the joint state message
 		self.rotate_idx = 0
 		self.rack_idx = 0
 		self.scissor_idx = 0
 		self.dump_idx = 0
+		self.camera_idx = 0
 
 		# Variables to hold the current positions of the joints
 		self.rotate_pos = 0
 		self.rack_pos = 0
 		self.scissor_pos = 0
 		self.dump_pos = 0
+		self.camera_pos = 0
 
 		self.initialized = False
 
@@ -59,7 +62,7 @@ class teleopController(object):
 			# Fill messages with ideal starting positions. Determined through testing
 			rotate_msg.data = 1.25
 			rack_msg.data = 0.0
-			scissor_msg.data = -0.15
+			scissor_msg.data = -0.3
 			dump_msg.data = 0.5
 
 			# Publish the starting state to the robot so it isn't coliding with the ground at all
@@ -81,7 +84,7 @@ class teleopController(object):
 			vel_msg.linear.z = 0
 			vel_msg.angular.x = 0
 			vel_msg.angular.y = 0
-			vel_msg.angular.z = msg.axes[3]*1.5 # Right joysick left and right
+			vel_msg.angular.z = msg.axes[3]*1 # Right joysick left and right
 
 			self.vel_pub.publish(vel_msg)
 
@@ -113,11 +116,11 @@ class teleopController(object):
 			scissor_msg = Float64()
 			dump_msg = Float64()
 
-			# Increment the position of the end effector rotate joint based on the 
+			# Increment the position of the dispensing scissor joint based on the 
 			# Left joystick
 			scissor_msg.data = self.scissor_pos + .1*msg.axes[1]
 
-			# Increment the position of the end effector rack joint based on the 
+			# Increment the position of the dispensing dump joint based on the 
 			# Left joystick
 			dump_msg.data = self.dump_pos - .15*msg.axes[4]
 
@@ -128,19 +131,35 @@ class teleopController(object):
 			return
 
 
+		# Check if deadman camera switch, currently RT, is mostly held down
+		elif((-.5*(msg.axes[5] - 1)) > .9):
+			# Empty position messages
+			camera_msg = Float64()
+
+			# Increment the position of the camera joint based on the 
+			# Left joystick
+			camera_msg.data = self.camera_pos + .05*msg.axes[0]
+			
+			self.camera_pos_pub.publish(camera_msg)
+
+			return
+
+
 	# Gets the current joint state of the joints on the robot
 	def jointStatesCallback(self, msg):
 		# Get the indexes of the joints in the message
 		self.rotate_idx = msg.name.index("rotate")
 		self.rack_idx = msg.name.index("rack")
 		self.scissor_idx = msg.name.index("scissor")
-		self.dump_idx = msg.name.index("dispense")
+		self.dump_idx = msg.name.index("dispense_rotate")
+		self.camera_idx = msg.name.index("camera_joint")
 
 		# Update the position of each of the joints
 		self.rotate_pos = msg.position[self.rotate_idx]
 		self.rack_pos = msg.position[self.rack_idx]
 		self.scissor_pos = msg.position[self.scissor_idx]
 		self.dump_pos = msg.position[self.dump_idx]
+		self.camera_pos = msg.position[self.camera_idx]
 
 		# print("Rotate: " + str(self.rotate_pos))
 		# print("Rack: " + str(self.rack_pos))
